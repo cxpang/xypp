@@ -1,13 +1,14 @@
 <?php
 namespace frontend\controllers;
 
+use frontend\models\NewEmailSend;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\models\LoginForm;
+use common\models\NewLoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\Sign1;
@@ -88,9 +89,15 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $model = new LoginForm();
+        $model = new NewLoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+//             var_dump(Yii::$app->user->isGuest);打印也为false，说明验证无误
+//             exit(0);
+//            var_dump(Yii::$app->user->identity->username); //打印出登录用户名正确
+//            exit(0);
+//            return self::actionIndex();  return goback显示不出来，但是直接控制器跳转却正常
+//            return $this->goBack();        //原来的方法不成功
+            return self::actionIndex();
         } else {
             return $this->render('login', [
                 'model' => $model,
@@ -153,9 +160,7 @@ class SiteController extends Controller
         $model = new Sign1();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }
+                    return self::actionLogin();
             }
         }
 
@@ -172,14 +177,14 @@ class SiteController extends Controller
      */
     public function actionRequestPasswordReset()
     {
-        $model = new PasswordResetRequestForm();
+        $model = new NewEmailSend();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
+                Yii::$app->session->setFlash('success', '请检查你的邮箱，并点击邮箱中的链接.');
 
                 return $this->goHome();
             } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
+                Yii::$app->session->setFlash('error', '对不起，我们无法根据你的邮箱找回密码');
             }
         }
 
