@@ -13,6 +13,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\Sign1;
 use frontend\models\ContactForm;
+use frontend\models\NewResetPasswrodForm;
 
 /**
  * Site controller
@@ -97,7 +98,8 @@ class SiteController extends Controller
 //            exit(0);
 //            return self::actionIndex();  return goback显示不出来，但是直接控制器跳转却正常
 //            return $this->goBack();        //原来的方法不成功
-            return self::actionIndex();
+
+            return $this->goBack();
         } else {
             return $this->render('login', [
                 'model' => $model,
@@ -160,7 +162,9 @@ class SiteController extends Controller
         $model = new Sign1();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
-                    return self::actionLogin();
+                if (Yii::$app->getUser()->login($user)) {
+                    return $this->goHome();
+                }
             }
         }
 
@@ -203,13 +207,13 @@ class SiteController extends Controller
     public function actionResetPassword($token)
     {
         try {
-            $model = new ResetPasswordForm($token);
+            $model = new NewResetPasswrodForm($token);
         } catch (InvalidParamException $e) {
             throw new BadRequestHttpException($e->getMessage());
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', 'New password saved.');
+            Yii::$app->session->setFlash('success', '密码已修改.');
 
             return $this->goHome();
         }

@@ -5,7 +5,7 @@ use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\models\LoginForm;
+use common\models\NewLoginForm;
 
 /**
  * Site controller
@@ -13,7 +13,7 @@ use common\models\LoginForm;
 class SiteController extends Controller
 {
     /**
-     * @inheritdoc
+     * @inheritdoc后台控制页面只有登录后才能访问后台 access中的rule规定的
      */
     public function behaviors()
     {
@@ -60,6 +60,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout='backheader';
         return $this->render('index');
     }
 
@@ -70,13 +71,16 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout='backheader';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
-        $model = new LoginForm();
+        $model = new NewLoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+
+//            return $this->goBack();
+            return self::actionIndex();
         } else {
             return $this->render('login', [
                 'model' => $model,

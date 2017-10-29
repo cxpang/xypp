@@ -37,29 +37,28 @@ AppAsset::register($this);
         ],
 
     ]);
-    $menuItems = [
-        ['label'=>'生活','items'=>[
-            ['label' => '旅行故事', 'url' => ['#']],
-            ['label' => '合租空间', 'url' => ['#']],
-            ['label' => '情感天地', 'url' => ['#']],
+    $leftmenuItems = [
+        ['label'=>'生活管理','items'=>[
+            ['label' => '旅行故事管理', 'url' => ['#']],
+            ['label' => '合租空间管理', 'url' => ['#']],
+            ['label' => '情感天地管理', 'url' => ['#']],
         ]],
-        ['label'=>'娱乐','items'=>[
-            ['label' => '追星剧场', 'url' => ['#']],
-            ['label' => '健身空间', 'url' => ['#']],
-            ['label' => '追梦天涯', 'url' => ['#']],
+        ['label'=>'娱乐管理','items'=>[
+            ['label' => '追星剧场管理', 'url' => ['#']],
+            ['label' => '健身空间管理', 'url' => ['#']],
+            ['label' => '追梦天涯管理', 'url' => ['#']],
         ]],
-        ['label'=>'学习','items'=>[
-            ['label' => '旧书市场', 'url' => ['#']],
-            ['label' => '考试有方', 'url' => ['#']],
-            ['label' => '图书馆约', 'url' => ['#']],
+        ['label'=>'学习管理','items'=>[
+            ['label' => '旧书市场管理', 'url' => ['#']],
+            ['label' => '考试有方管理', 'url' => ['#']],
+            ['label' => '图书馆约管理', 'url' => ['#']],
         ]],
 
     ];
     if (Yii::$app->user->isGuest) {
-        $rihghtmenuItems[] = ['label' => '注册', 'url' => ['/site/signup']];
-        $rihghtmenuItems[] = ['label' => '登录', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => '登录', 'url' => ['/site/login']];
     } else {
-        $rihghtmenuItems[] = '<li>'
+        $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
                 '退出(' . Yii::$app->user->identity->username . ')',
@@ -70,11 +69,11 @@ AppAsset::register($this);
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-left'],
-        'items' => $menuItems,
+        'items' => $leftmenuItems,
     ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $rihghtmenuItems,
+        'items' => $menuItems,
     ]);
     NavBar::end();
     ?>
