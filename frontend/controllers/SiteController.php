@@ -86,6 +86,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -98,8 +99,10 @@ class SiteController extends Controller
 //            exit(0);
 //            return self::actionIndex();  return goback显示不出来，但是直接控制器跳转却正常
 //            return $this->goBack();        //原来的方法不成功
+            $loginuser=$model->login();
+            $picture=$loginuser->upicture;
 
-            return $this->goBack();
+            return $this->goBack($picture);
         } else {
             return $this->render('login', [
                 'model' => $model,
