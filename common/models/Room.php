@@ -38,6 +38,7 @@ class Room extends \yii\db\ActiveRecord
             [['roomaddress'], 'string', 'max' => 255],
             [['roomstatus'], 'string', 'max' => 10],
             [['createtime'], 'string', 'max' => 11],
+            [['uid'],'exist','skipOnError'=>true,'targetClass'=>XUser::className(),'targetAttribute'=>['uid'=>'id']],
         ];
     }
 
@@ -47,14 +48,15 @@ class Room extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'roomid' => '合租房间ID',
+            'roomid' => '合租房间发帖ID',
             'roomname' => '合租房间名',
             'roomimage' => '合租房间照片',
             'roomprice' => '合租房间价格',
             'roomaddress' => '合租房间地址',
             'roomstatus' => '合租房间状态',
             'uid' => '发帖人ID',
-            'createtime' => '创建时间',
+            'createtime' => '发表时间',
+
         ];
     }
     public function getStatus0(){

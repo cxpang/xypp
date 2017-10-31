@@ -22,13 +22,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'roomname',
-            'roomimage',
-            'roomprice',
-            'roomaddress',
+             'roomid',
+             'roomname',
+             'roomimage',
+             'roomprice',
+             'roomaddress',
              'roomstatus',
              'uid',
-             'createtime',
+            ['attribute'=>'createtime',
+                'format'=>['date','php:Y-m-d H:i:s'],
+
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

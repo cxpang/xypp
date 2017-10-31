@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Room */
 
-$this->title = 'Create Room';
-$this->params['breadcrumbs'][] = ['label' => 'Rooms', 'url' => ['index']];
+$this->title = '新增合租';
+$this->params['breadcrumbs'][] = ['label' => '合租空间', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="room-create">

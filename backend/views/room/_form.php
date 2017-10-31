@@ -20,14 +20,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'roomaddress')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'roomstatus')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'roomstatus')->dropDownList(['求租中'=>'求租中','已结帖'=>'已结帖'],
+        ['prompt'])?>
 
     <?= $form->field($model, 'uid')->textInput() ?>
 
-    <?= $form->field($model, 'createtime')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? '创建' : '修改', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
