@@ -3,11 +3,11 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use backend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+use frontend\assets\AppAsset;
 use common\widgets\Alert;
 
 AppAsset::register($this);
@@ -29,27 +29,49 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => '校园拼客',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
+            'style'=>'font-size:25px;'
         ],
+
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+    $leftmenuItems = [
+        ['label'=>'生活管理','items'=>[
+            ['label' => '旅行故事管理', 'url' => ['#']],
+            ['label' => '合租空间管理', 'url' => ['/room/index']],
+            ['label' => '情感天地管理', 'url' => ['#']],
+        ]],
+        ['label'=>'娱乐管理','items'=>[
+            ['label' => '追星剧场管理', 'url' => ['#']],
+            ['label' => '健身空间管理', 'url' => ['#']],
+            ['label' => '追梦天涯管理', 'url' => ['#']],
+        ]],
+        ['label'=>'学习管理','items'=>[
+            ['label' => '旧书市场管理', 'url' => ['#']],
+            ['label' => '考试有方管理', 'url' => ['#']],
+            ['label' => '图书馆约管理', 'url' => ['#']],
+        ]],
+        ['label'=>'用户管理','url'=>['/xuser/index']],
+
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => '登录', 'url' => ['/site/login']];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                '退出(' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
             . '</li>';
     }
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-left'],
+        'items' => $leftmenuItems,
+    ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
@@ -66,13 +88,6 @@ AppAsset::register($this);
     </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
 </body>

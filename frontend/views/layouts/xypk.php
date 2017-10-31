@@ -132,19 +132,6 @@ AppAsset::register($this);
 <div style="height:800px;">
     <?php echo $content; ?>
 </div>
-
-<div class="footer">
-     <span class="footerintro">
-         本网站致力于专注大学生活,为大学生在学习生活方面提供便利。大学生们可以进行一系列“拼”的活动。
-     </span><br />
-    <span class="showuser">
-         庞晨旭:13262618330
-     </span>
-    <br />
-    <span class="footer2">
-         <address>上海市浦东新区临港新城海港大道1550号</address>
-    </span>
-</div>
 <?php $this->endBody() ?>
 </body>
 </html>

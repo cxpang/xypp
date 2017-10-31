@@ -40,7 +40,7 @@ AppAsset::register($this);
     $leftmenuItems = [
         ['label'=>'生活管理','items'=>[
             ['label' => '旅行故事管理', 'url' => ['#']],
-            ['label' => '合租空间管理', 'url' => ['#']],
+            ['label' => '合租空间管理', 'url' => ['/room/index']],
             ['label' => '情感天地管理', 'url' => ['#']],
         ]],
         ['label'=>'娱乐管理','items'=>[
@@ -53,6 +53,7 @@ AppAsset::register($this);
             ['label' => '考试有方管理', 'url' => ['#']],
             ['label' => '图书馆约管理', 'url' => ['#']],
         ]],
+        ['label'=>'用户管理','url'=>['/xuser/index']],
 
     ];
     if (Yii::$app->user->isGuest) {

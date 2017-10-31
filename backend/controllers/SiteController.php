@@ -15,6 +15,7 @@ class SiteController extends Controller
     /**
      * @inheritdoc后台控制页面只有登录后才能访问后台 access中的rule规定的
      */
+
     public function behaviors()
     {
         return [

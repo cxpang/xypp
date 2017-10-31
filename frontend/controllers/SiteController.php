@@ -102,7 +102,7 @@ class SiteController extends Controller
             $loginuser=$model->login();
             $picture=$loginuser->upicture;
 
-            return $this->goBack($picture);
+            return $this->goBack();
         } else {
             return $this->render('login', [
                 'model' => $model,
