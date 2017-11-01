@@ -34,7 +34,8 @@ class Room extends \yii\db\ActiveRecord
         return [
             [['roomname', 'roomprice', 'roomaddress', 'roomstatus', 'uid', 'createtime'], 'required'],
             [['roomprice', 'uid'], 'integer'],
-            [['roomname', 'roomimage'], 'string', 'max' => 20],
+            [['roomname'], 'string', 'max' => 20],
+            [['roomimage'], 'file', 'skipOnEmpty' => true,'extensions' => 'png, jpg'],
             [['roomaddress'], 'string', 'max' => 255],
             [['roomstatus'], 'string', 'max' => 10],
             [['createtime'], 'string', 'max' => 11],

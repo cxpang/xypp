@@ -10,11 +10,11 @@ use yii\widgets\ActiveForm;
 
 <div class="room-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'roomname')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'roomimage')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'roomimage')->fileInput() ?>
 
     <?= $form->field($model, 'roomprice')->textInput() ?>
 
@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
         ['prompt'])?>
 
     <?= $form->field($model, 'uid')->textInput() ?>
-
+    <?= $form->field($model, 'createtime')->textInput()->hiddenInput()->label(false) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? '创建' : '修改', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

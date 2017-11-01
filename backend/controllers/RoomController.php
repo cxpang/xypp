@@ -8,7 +8,7 @@ use common\models\RoomSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\web\UploadedFile;
 /**
  * RoomController implements the CRUD actions for Room model.
  */
@@ -71,14 +71,34 @@ class RoomController extends Controller
     public function actionCreate()
     {
         $model = new Room();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->roomid]);
-        } else {
+        $model->createtime=time();
+        if($model->load(Yii::$app->request->post())){
+            $model=self::upload($model);
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->roomid]);
+            }
+        }
+        else{
             return $this->render('create', [
                 'model' => $model,
             ]);
         }
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->roomid]);
+//        } else {
+//            return $this->render('create', [
+//                'model' => $model,
+//            ]);
+//        }
+    }
+    public function upload($model){
+        $image=UploadedFile::getInstance($model, 'roomimage');
+        $ext=$image->getExtension();
+        $imageName=time().rand(100,900).'.'.$ext;
+        $path='../../uploads/';
+        $image->saveAs($path.$imageName);
+        $model->roomimage='127.0.0.1/xypk/uploads/'.$imageName;
+        return $model;
     }
 
     /**
@@ -90,14 +110,24 @@ class RoomController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->roomid]);
-        } else {
+        if($model->load(Yii::$app->request->post())){
+            $model=self::upload($model);
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->roomid]);
+            }
+        }
+        else{
             return $this->render('update', [
                 'model' => $model,
             ]);
         }
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->roomid]);
+//        } else {
+//            return $this->render('update', [
+//                'model' => $model,
+//            ]);
+//        }
     }
 
     /**
