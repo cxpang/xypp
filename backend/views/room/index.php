@@ -24,7 +24,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
              'roomid',
              'roomname',
-             'roomimage',
+             [
+                     'attribute'=>'roomimage',
+                     'format' => ['raw',],
+                     'value'=>function($dataProvider){
+                       return Html::img('http://'.$dataProvider->roomimage,['alt' => '缩略图','width' => 80]);
+                     }
+             ],
              'roomprice',
              'roomaddress',
              'roomstatus',
