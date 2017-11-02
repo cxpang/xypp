@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Roomcontent;
+use common\models\emotion;
 
 /**
- * RoomcontentSearch represents the model behind the search form about `common\models\Roomcontent`.
+ * EmotionSearch represents the model behind the search form about `common\models\emotion`.
  */
-class RoomcontentSearch extends Roomcontent
+class EmotionSearch extends emotion
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class RoomcontentSearch extends Roomcontent
     public function rules()
     {
         return [
-            [['roomcontentid', 'uid', 'roomid'], 'integer'],
-            [['contenttext', 'createtime'], 'safe'],
+            [['emotionid', 'uid', 'createtime', 'updatetime'], 'integer'],
+            [['emotionname', 'emotioncontent', 'emotionimage'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class RoomcontentSearch extends Roomcontent
      */
     public function search($params)
     {
-        $query = Roomcontent::find();
+        $query = emotion::find();
 
         // add conditions that should always apply here
 
@@ -60,13 +60,15 @@ class RoomcontentSearch extends Roomcontent
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'roomcontentid' => $this->roomcontentid,
+            'emotionid' => $this->emotionid,
             'uid' => $this->uid,
-            'roomid' => $this->roomid,
+            'createtime' => $this->createtime,
+            'updatetime' => $this->updatetime,
         ]);
 
-        $query->andFilterWhere(['like', 'contenttext', $this->contenttext])
-            ->andFilterWhere(['like', 'createtime', $this->createtime]);
+        $query->andFilterWhere(['like', 'emotionname', $this->emotionname])
+            ->andFilterWhere(['like', 'emotioncontent', $this->emotioncontent])
+            ->andFilterWhere(['like', 'emotionimage', $this->emotionimage]);
 
         return $dataProvider;
     }

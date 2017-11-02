@@ -55,18 +55,18 @@ class XUser extends \yii\db\ActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'uid' => 'id',
-            'username' => 'Username',
-            'password' => 'Password',
-            'sex' => 'Sex',
-            'address' => 'Address',
-            'email' => 'Email',
-            'upicture' => 'Upicture',
-            'uphone' => 'Uphone',
-            'status' => 'Status',
+            'uid' => '用户id',
+            'username' => '用户名',
+            'password' => '用户密码',
+            'sex' => '用户性别',
+            'address' => '用户地址',
+            'email' => '用户邮箱',
+            'upicture' => '用户头像',
+            'uphone' => '用户手机',
+            'status' => '用户状态',
             'auth_key' => 'Auth Key',
             'password_reset_token' => 'Password Reset Token',
-            'time' => 'Time',
+            'time' => '创建时间',
         ];
     }
     public function setPassword($password)

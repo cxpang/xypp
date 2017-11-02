@@ -39,9 +39,12 @@ AppAsset::register($this);
     ]);
     $leftmenuItems = [
         ['label'=>'生活管理','items'=>[
-            ['label' => '旅行故事管理', 'url' => ['#']],
+            ['label' => '旅行故事管理', 'url' => ['/traval/index']],
+            ['label' => '旅行故事评论管理', 'url' => ['/travalcomment/index']],
             ['label' => '合租空间管理', 'url' => ['/room/index']],
-            ['label' => '情感天地管理', 'url' => ['#']],
+            ['label' => '合租空间评论管理', 'url' => ['/roomcomment/index']],
+            ['label' => '情感天地管理', 'url' => ['/emotion/index']],
+            ['label' => '情感天地评论管理', 'url' => ['/emotioncomment/index']],
         ]],
         ['label'=>'娱乐管理','items'=>[
             ['label' => '追星剧场管理', 'url' => ['#']],

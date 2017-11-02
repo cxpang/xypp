@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Roomcontent;
+use common\models\Travalcomment;
 
 /**
- * RoomcontentSearch represents the model behind the search form about `common\models\Roomcontent`.
+ * TravalcommentSearch represents the model behind the search form about `common\models\Travalcomment`.
  */
-class RoomcontentSearch extends Roomcontent
+class TravalcommentSearch extends Travalcomment
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class RoomcontentSearch extends Roomcontent
     public function rules()
     {
         return [
-            [['roomcontentid', 'uid', 'roomid'], 'integer'],
-            [['contenttext', 'createtime'], 'safe'],
+            [['travalcommentid', 'travalid', 'uid', 'createtime', 'updatetime'], 'integer'],
+            [['travalcontent'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class RoomcontentSearch extends Roomcontent
      */
     public function search($params)
     {
-        $query = Roomcontent::find();
+        $query = Travalcomment::find();
 
         // add conditions that should always apply here
 
@@ -60,13 +60,14 @@ class RoomcontentSearch extends Roomcontent
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'roomcontentid' => $this->roomcontentid,
+            'travalcommentid' => $this->travalcommentid,
+            'travalid' => $this->travalid,
             'uid' => $this->uid,
-            'roomid' => $this->roomid,
+            'createtime' => $this->createtime,
+            'updatetime' => $this->updatetime,
         ]);
 
-        $query->andFilterWhere(['like', 'contenttext', $this->contenttext])
-            ->andFilterWhere(['like', 'createtime', $this->createtime]);
+        $query->andFilterWhere(['like', 'travalcontent', $this->travalcontent]);
 
         return $dataProvider;
     }

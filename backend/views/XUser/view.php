@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\XUser */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Xusers', 'url' => ['index']];
+$this->title = $model->username;
+$this->params['breadcrumbs'][] = ['label' => '用户管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="xuser-view">
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('修改', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('删除', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => '确定要删除该用户吗?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -39,7 +39,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'status',
             'auth_key',
             'password_reset_token',
-            'time:datetime',
+            ['attribute'=>'time',
+                'format'=>['date','php:Y-m-d H:i:s'],
+
+            ],
         ],
     ]) ?>
 

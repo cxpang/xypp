@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Roomcontent;
+use common\models\Traval;
 
 /**
- * RoomcontentSearch represents the model behind the search form about `common\models\Roomcontent`.
+ * TravalSearch represents the model behind the search form about `common\models\Traval`.
  */
-class RoomcontentSearch extends Roomcontent
+class TravalSearch extends Traval
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class RoomcontentSearch extends Roomcontent
     public function rules()
     {
         return [
-            [['roomcontentid', 'uid', 'roomid'], 'integer'],
-            [['contenttext', 'createtime'], 'safe'],
+            [['travalid', 'travalprice', 'travaldays', 'uid', 'createtime', 'updatetime'], 'integer'],
+            [['travalname', 'travaltime', 'travalcontent', 'travalimage', 'status'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class RoomcontentSearch extends Roomcontent
      */
     public function search($params)
     {
-        $query = Roomcontent::find();
+        $query = Traval::find();
 
         // add conditions that should always apply here
 
@@ -60,13 +60,19 @@ class RoomcontentSearch extends Roomcontent
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'roomcontentid' => $this->roomcontentid,
+            'travalid' => $this->travalid,
+            'travalprice' => $this->travalprice,
+            'travaldays' => $this->travaldays,
             'uid' => $this->uid,
-            'roomid' => $this->roomid,
+            'createtime' => $this->createtime,
+            'updatetime' => $this->updatetime,
         ]);
 
-        $query->andFilterWhere(['like', 'contenttext', $this->contenttext])
-            ->andFilterWhere(['like', 'createtime', $this->createtime]);
+        $query->andFilterWhere(['like', 'travalname', $this->travalname])
+            ->andFilterWhere(['like', 'travaltime', $this->travaltime])
+            ->andFilterWhere(['like', 'travalcontent', $this->travalcontent])
+            ->andFilterWhere(['like', 'travalimage', $this->travalimage])
+            ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;
     }

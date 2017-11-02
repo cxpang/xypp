@@ -4,33 +4,38 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\XUserSearch */
+/* @var $searchModel common\models\TravalSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = '用户管理';
+$this->title = '旅行故事';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="xuser-index">
+<div class="traval-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?= Html::a('新增旅行故事', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-
-             'id',
-             'username',
-             'password',
-             'sex',
-             'address',
-             'email:email',
-             'upicture',
-             'uphone',
+            'travalid',
+            'travalname',
+            'travaltime',
+//            'travalcontent',
+            'travalprice',
+             'travaldays',
+             'travalimage',
+             'uid',
              'status',
-//             'auth_key',
-//             'password_reset_token',
-            ['attribute'=>'time',
+            ['attribute'=>'createtime',
+                'format'=>['date','php:Y-m-d H:i:s'],
+
+            ],
+            ['attribute'=>'updatetime',
                 'format'=>['date','php:Y-m-d H:i:s'],
 
             ],
