@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\RoomcontentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Roomcontents';
+$this->title = '合租空间评论';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="roomcontent-index">
@@ -15,20 +15,28 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Roomcontent', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+//            ['class' => 'yii\grid\SerialColumn'],
 
             'roomcontentid',
             'contenttext',
             'uid',
+            [
+                    'attribute'=>'评论人姓名',
+                    'value'=>'u.username',
+            ],
             'roomid',
-            'createtime',
+            [
+                'attribute'=>'合租空间帖子名',
+                'value'=>'room.roomname',
+            ],
+            ['attribute'=>'createtime',
+                'format'=>['date','php:Y-m-d H:i:s'],
+
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

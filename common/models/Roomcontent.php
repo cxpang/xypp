@@ -33,6 +33,9 @@ class Roomcontent extends \yii\db\ActiveRecord
             [['uid', 'roomid'], 'integer'],
             [['contenttext'], 'string', 'max' => 255],
             [['createtime'], 'string', 'max' => 11],
+            [['uid'], 'exist', 'skipOnError' => true, 'targetClass' => XUser::className(), 'targetAttribute' => ['uid' => 'id']],
+            [['roomid'], 'exist', 'skipOnError' => true, 'targetClass' => Room::className(), 'targetAttribute' => ['roomid' => 'roomid']],
+
         ];
     }
 
@@ -42,11 +45,19 @@ class Roomcontent extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'roomcontentid' => 'Roomcontentid',
-            'contenttext' => 'Contenttext',
-            'uid' => 'Uid',
-            'roomid' => 'Roomid',
-            'createtime' => 'Createtime',
+            'roomcontentid' => '合租空间评论id',
+            'contenttext' => '合租空间评论内容',
+            'uid' => '评论人',
+            'roomid' => '合租空间id',
+            'createtime' => '评论时间',
         ];
+    }
+    public function getU()
+    {
+        return $this->hasOne(XUser::className(), ['id' => 'uid']);
+    }
+    public function getRoom()
+    {
+        return $this->hasOne(Room::className(), ['roomid' => 'roomid']);
     }
 }

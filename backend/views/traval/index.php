@@ -29,7 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'travalprice',
              'travaldays',
              'travalimage',
-             'uid',
+            'uid',
+            [
+                'attribute'=>'发帖人',
+                'value'=>'u.username',
+            ],
              'status',
             ['attribute'=>'createtime',
                 'format'=>['date','php:Y-m-d H:i:s'],

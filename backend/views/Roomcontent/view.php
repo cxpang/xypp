@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\Roomcontent */
 
 $this->title = $model->roomcontentid;
-$this->params['breadcrumbs'][] = ['label' => 'Roomcontents', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '合租空间评论', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="roomcontent-view">
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->roomcontentid], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->roomcontentid], [
+        <?= Html::a('更新', ['update', 'id' => $model->roomcontentid], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('删除', ['delete', 'id' => $model->roomcontentid], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => '确定要删除这条记录吗?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -30,9 +30,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'roomcontentid',
             'contenttext',
-            'uid',
-            'roomid',
-            'createtime',
+            [
+                'attribute'=>'评论人姓名',
+                'value'=>$model->u->username,
+            ],
+            [
+                'attribute'=>'合租空间帖子名',
+                'value'=>$model->room->roomname,
+            ],
+            ['attribute'=>'createtime',
+                'format'=>['date','php:Y-m-d H:i:s'],
+
+            ],
         ],
     ]) ?>
 

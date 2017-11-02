@@ -27,6 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'emotioncontent:ntext',
             'emotionimage',
             'uid',
+            [
+                'attribute'=>'发帖人',
+                'value'=>'u.username',
+            ],
             ['attribute'=>'createtime',
                 'format'=>['date','php:Y-m-d H:i:s'],
 

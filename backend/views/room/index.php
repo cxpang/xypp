@@ -34,7 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
              'roomprice',
              'roomaddress',
              'roomstatus',
-             'uid',
+            'uid',
+            [
+                    'attribute'=>'发帖人',
+                    'value'=>'status0.username',
+            ],
             ['attribute'=>'createtime',
                 'format'=>['date','php:Y-m-d H:i:s'],
 
