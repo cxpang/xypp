@@ -19,7 +19,7 @@ class XUserSearch extends XUser
     {
         return [
             [['id', 'time'], 'integer'],
-            [['username', 'password', 'sex', 'address', 'email', 'upicture', 'uphone', 'status', 'auth_key', 'password_reset_token'], 'safe'],
+            [['username', 'password', 'sex', 'address', 'email', 'upicture', 'uphone', 'status', 'university','auth_key', 'password_reset_token'], 'safe'],
         ];
     }
 
@@ -47,6 +47,7 @@ class XUserSearch extends XUser
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination'=>['pageSize'=>8],
         ]);
 
         $this->load($params);
@@ -71,6 +72,7 @@ class XUserSearch extends XUser
             ->andFilterWhere(['like', 'upicture', $this->upicture])
             ->andFilterWhere(['like', 'uphone', $this->uphone])
             ->andFilterWhere(['like', 'status', $this->status])
+            ->andFilterWhere(['like','university',$this->university])
             ->andFilterWhere(['like', 'auth_key', $this->auth_key])
             ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token]);
 

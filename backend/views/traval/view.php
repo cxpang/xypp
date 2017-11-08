@@ -34,7 +34,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'travalcontent',
             'travalprice',
             'travaldays',
-            'travalimage',
+            [
+                'attribute'=>'travalimage',
+                'format' => ['raw',],
+                'value'=>function($model){
+                    return Html::img('http://'.$model->travalimage,['alt' => '缩略图','width' => 80]);
+                }
+            ],
             [
                 'label'=>'发布人',
                 'value'=>$model->u->username,
@@ -45,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>date('Y-m-d H:i:s',$model->createtime),
             ],
             [
-                'attribute'=>'发布时间',
+                'attribute'=>'修改时间',
                 'value'=>date('Y-m-d H:i:s',$model->updatetime),
             ],
         ],

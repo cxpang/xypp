@@ -8,6 +8,7 @@ use common\models\TravalSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * TravalController implements the CRUD actions for Traval model.
@@ -64,14 +65,35 @@ class TravalController extends Controller
     public function actionCreate()
     {
         $model = new Traval();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->travalid]);
-        } else {
+        if($model->load(Yii::$app->request->post())){
+            $model=self::upload($model);
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->travalid]);
+            }
+        }
+        else{
             return $this->render('create', [
                 'model' => $model,
             ]);
         }
+//
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->travalid]);
+//        } else {
+//            var_dump($model->getErrors());
+//            return $this->render('create', [
+//                'model' => $model,
+//            ]);
+//        }
+    }
+    public function upload($model){
+        $image=UploadedFile::getInstance($model, 'travalimage');
+        $ext=$image->getExtension();
+        $imageName=time().rand(100,900).'.'.$ext;
+        $path='../../uploads/';
+        $image->saveAs($path.$imageName);
+        $model->travalimage='127.0.0.1/xypk/uploads/'.$imageName;
+        return $model;
     }
 
     /**
@@ -84,10 +106,14 @@ class TravalController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->travalid]);
-        } else {
-            return $this->render('update', [
+        if($model->load(Yii::$app->request->post())){
+            $model=self::upload($model);
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->travalid]);
+            }
+        }
+        else{
+            return $this->render('create', [
                 'model' => $model,
             ]);
         }

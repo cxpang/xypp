@@ -22,15 +22,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'travaldays')->textInput() ?>
 
-    <?= $form->field($model, 'travalimage')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'travalimage')->fileInput() ?>
 
     <?= $form->field($model, 'uid')->textInput() ?>
 
-    <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'createtime')->textInput() ?>
-
-    <?= $form->field($model, 'updatetime')->textInput() ?>
+    <?= $form->field($model, 'status')->dropDownList(['求拼游'=>'求拼游','已结帖'=>'已结帖'],
+        ['prompt'])?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? '新增' : '修改', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

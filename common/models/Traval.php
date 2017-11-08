@@ -38,12 +38,12 @@ class Traval extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['travalname', 'travaltime', 'travalcontent', 'travalprice', 'travaldays', 'uid', 'status', 'createtime', 'updatetime'], 'required'],
+            [['travalname', 'travaltime', 'travalcontent', 'travalprice', 'travaldays', 'uid', 'status',], 'required'],
             [['travalprice', 'travaldays', 'uid', 'createtime', 'updatetime'], 'integer'],
             [['travalname', 'travaltime'], 'string', 'max' => 100],
             [['travalcontent'], 'string', 'max' => 255],
-            [['travalimage'], 'string', 'max' => 20],
             [['status'], 'string', 'max' => 10],
+            [['travalimage'], 'file', 'skipOnEmpty' => true,'extensions' => 'png, jpg'],
             [['uid'], 'exist', 'skipOnError' => true, 'targetClass' => XUser::className(), 'targetAttribute' => ['uid' => 'id']],
         ];
     }
@@ -64,7 +64,7 @@ class Traval extends \yii\db\ActiveRecord
             'uid' => '发帖人',
             'status' => '状态',
             'createtime' => '发布时间',
-            'updatetime' => '最新修改时间',
+            'updatetime' => '修改时间',
         ];
     }
 
@@ -82,5 +82,21 @@ class Traval extends \yii\db\ActiveRecord
     public function getTravalcomments()
     {
         return $this->hasMany(Travalcomment::className(), ['travalid' => 'travalid']);
+    }
+    public function beforeSave($insert)
+    {
+       if(parent::beforeSave($insert)){
+           if($insert){
+               $this->createtime=time();
+               $this->updatetime=time();
+           }
+           else{
+               $this->updatetime=time();
+           }
+           return true;
+       }
+       else{
+           return false;
+       }
     }
 }

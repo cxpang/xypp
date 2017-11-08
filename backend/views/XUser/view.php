@@ -34,14 +34,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'sex',
             'address',
             'email:email',
-            'upicture',
+            [
+                'attribute'=>'upicture',
+                'format' => ['raw',],
+                'value'=>function($model){
+                    return Html::img('http://'.$model->upicture,['alt' => '缩略图','width' => 80]);
+                }
+            ],
             'uphone',
+            'university',
             'status',
             'auth_key',
             'password_reset_token',
             ['attribute'=>'time',
                 'format'=>['date','php:Y-m-d H:i:s'],
-
             ],
         ],
     ]) ?>

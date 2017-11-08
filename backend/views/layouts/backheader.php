@@ -42,21 +42,29 @@ AppAsset::register($this);
             ['label' => '旅行故事管理', 'url' => ['/traval/index']],
             ['label' => '旅行故事评论管理', 'url' => ['/travalcomment/index']],
             ['label' => '合租空间管理', 'url' => ['/room/index']],
-            ['label' => '合租空间评论管理', 'url' => ['/roomcomment/index']],
+            ['label' => '合租空间评论管理', 'url' => ['/roomcontent/index']],
             ['label' => '情感天地管理', 'url' => ['/emotion/index']],
             ['label' => '情感天地评论管理', 'url' => ['/emotioncomment/index']],
         ]],
         ['label'=>'娱乐管理','items'=>[
-            ['label' => '追星剧场管理', 'url' => ['#']],
-            ['label' => '健身空间管理', 'url' => ['#']],
+            ['label' => '追星剧场管理', 'url' => ['/star/index']],
+            ['label' => '追星剧场评论管理', 'url' => ['/starcomment/index']],
+            ['label' => '竞技空间管理', 'url' => ['/compet/index']],
+            ['label' => '竞技空间评论管理', 'url' => ['/competcomment/index']],
             ['label' => '追梦天涯管理', 'url' => ['#']],
         ]],
         ['label'=>'学习管理','items'=>[
-            ['label' => '旧书市场管理', 'url' => ['#']],
-            ['label' => '考试有方管理', 'url' => ['#']],
-            ['label' => '图书馆约管理', 'url' => ['#']],
+            ['label' => '旧书市场管理', 'url' => ['/oldbook/index']],
+            ['label' => '旧书市场评论管理', 'url' => ['/oldbookcomment/index']],
+            ['label' => '考试有方管理', 'url' => ['/exam/index']],
+            ['label' => '考试有方评论管理', 'url' => ['/examcomment/index']],
+            ['label' => '图书馆约管理', 'url' => ['/musium/index']],
+            ['label' => '图书馆约评论管理', 'url' => ['/musiumcomment/index']],
         ]],
-        ['label'=>'用户管理','url'=>['/xuser/index']],
+        ['label'=>'会员管理','items'=>[
+            ['label' => '普通会员', 'url' => ['/xuser/index']],
+            ['label' => '管理员', 'url' => ['/adminuser/index']],
+        ]],
 
     ];
     if (Yii::$app->user->isGuest) {

@@ -38,8 +38,8 @@ class XUser extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'password','email', 'uphone'], 'required'],
-            [['username', 'email'], 'string', 'max' => 20],
+            [['username', 'password','email', 'uphone','university'], 'required'],
+            [['username', 'email'], 'string', 'max' => 50],
             [['password'], 'string', 'max' => 255],
             [['uphone'], 'string', 'max' => 11],
             [['username'], 'unique'],
@@ -67,6 +67,7 @@ class XUser extends \yii\db\ActiveRecord implements IdentityInterface
             'auth_key' => 'Auth Key',
             'password_reset_token' => 'Password Reset Token',
             'time' => '创建时间',
+            'university'=>'所在大学',
         ];
     }
     public function setPassword($password)

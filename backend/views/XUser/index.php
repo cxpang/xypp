@@ -21,13 +21,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
              'id',
              'username',
-             'password',
+//             'password',
              'sex',
              'address',
              'email:email',
-             'upicture',
+            [
+                'attribute'=>'upicture',
+                'format' => ['raw',],
+                'value'=>function($dataProvider){
+                    return Html::img('http://'.$dataProvider->upicture,['alt' => '缩略图','width' => 80]);
+                }
+            ],
              'uphone',
              'status',
+            'university',
 //             'auth_key',
 //             'password_reset_token',
             ['attribute'=>'time',

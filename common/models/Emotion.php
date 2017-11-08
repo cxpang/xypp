@@ -34,11 +34,11 @@ class Emotion extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['emotionname', 'emotioncontent', 'emotionimage', 'uid', 'createtime', 'updatetime'], 'required'],
+            [['emotionname', 'emotioncontent', 'emotionimage', 'uid',], 'required'],
             [['emotioncontent'], 'string'],
             [['uid', 'createtime', 'updatetime'], 'integer'],
             [['emotionname'], 'string', 'max' => 100],
-            [['emotionimage'], 'string', 'max' => 20],
+            [['emotionimage'], 'file', 'skipOnEmpty' => true,'extensions' => 'png, jpg'],
             [['uid'], 'exist', 'skipOnError' => true, 'targetClass' => XUser::className(), 'targetAttribute' => ['uid' => 'id']],
         ];
     }
@@ -73,5 +73,21 @@ class Emotion extends \yii\db\ActiveRecord
     public function getEmotioncomments()
     {
         return $this->hasMany(Emotioncomment::className(), ['emotionid' => 'emotionid']);
+    }
+    public function beforeSave($insert)
+    {
+        if(parent::beforeSave($insert)){
+            if($insert){
+                $this->createtime=time();
+                $this->updatetime=time();
+            }
+            else{
+                $this->updatetime=time();
+            }
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }

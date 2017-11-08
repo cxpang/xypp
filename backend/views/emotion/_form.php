@@ -16,13 +16,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'emotioncontent')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'emotionimage')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'emotionimage')->fileInput() ?>
 
     <?= $form->field($model, 'uid')->textInput() ?>
 
-    <?= $form->field($model, 'createtime')->textInput() ?>
-
-    <?= $form->field($model, 'updatetime')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? '新增' : '更新', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

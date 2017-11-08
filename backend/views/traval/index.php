@@ -28,7 +28,13 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'travalcontent',
             'travalprice',
              'travaldays',
-             'travalimage',
+            [
+                'attribute'=>'travalimage',
+                'format' => ['raw',],
+                'value'=>function($dataProvider){
+                    return Html::img('http://'.$dataProvider->travalimage,['alt' => '缩略图','width' => 80]);
+                }
+            ],
             'uid',
             [
                 'attribute'=>'发帖人',

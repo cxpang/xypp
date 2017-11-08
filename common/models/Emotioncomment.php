@@ -33,7 +33,7 @@ class Emotioncomment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['emotionid', 'emotioncontent', 'uid', 'createtime', 'updatetime'], 'required'],
+            [['emotionid', 'emotioncontent', 'uid'], 'required'],
             [['emotionid', 'uid', 'createtime', 'updatetime'], 'integer'],
             [['emotioncontent'], 'string', 'max' => 255],
             [['emotionid'], 'exist', 'skipOnError' => true, 'targetClass' => Emotion::className(), 'targetAttribute' => ['emotionid' => 'emotionid']],
@@ -49,7 +49,7 @@ class Emotioncomment extends \yii\db\ActiveRecord
         return [
             'emotioncommentid' => '情感故事评论id',
             'emotionid' => '情感故事id',
-            'emotioncontent' => '情感故事名',
+            'emotioncontent' => '评论内容',
             'uid' => '发帖人',
             'createtime' => '创建时间',
             'updatetime' => '修改时间',
@@ -70,5 +70,21 @@ class Emotioncomment extends \yii\db\ActiveRecord
     public function getU()
     {
         return $this->hasOne(XUser::className(), ['id' => 'uid']);
+    }
+    public function beforeSave($insert)
+    {
+        if(parent::beforeSave($insert)){
+            if($insert){
+                $this->createtime=time();
+                $this->updatetime=time();
+            }
+            else{
+                $this->updatetime=time();
+            }
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }

@@ -15,6 +15,7 @@ class Sign1 extends Model
     public $password;
     public $repassword;
     public $verifyCode;
+    public $university;
 
     /**
      * @inheritdoc
@@ -27,6 +28,7 @@ class Sign1 extends Model
             ['username', 'unique', 'targetClass' => '\common\models\XUser', 'message' => '用户名已存在'],
             ['username', 'string', 'min' => 2, 'max' => 255],
             ['uphone','required','message'=>'手机号不能为空'],
+            ['university','required','message'=>'大学不能为空'],
             ['email', 'trim'],
             ['email', 'required','message'=>'邮箱不能为空'],
             ['email', 'email'],
@@ -56,6 +58,7 @@ class Sign1 extends Model
         $user->username = $this->username;
         $user->uphone = $this->uphone;
         $user->email = $this->email;
+        $user->university=$this->university;
         $user->time =time();
         $user->setPassword($this->password);
         $user->generateAuthKey();

@@ -8,6 +8,7 @@ use common\models\EmotionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * EmotionController implements the CRUD actions for emotion model.
@@ -55,6 +56,15 @@ class EmotionController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
+    public function upload($model){
+        $image=UploadedFile::getInstance($model, 'emotionimage');
+        $ext=$image->getExtension();
+        $imageName=time().rand(100,900).'.'.$ext;
+        $path='../../uploads/';
+        $image->saveAs($path.$imageName);
+        $model->emotionimage='127.0.0.1/xypk/uploads/'.$imageName;
+        return $model;
+    }
 
     /**
      * Creates a new emotion model.
@@ -65,13 +75,25 @@ class EmotionController extends Controller
     {
         $model = new emotion();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->emotionid]);
-        } else {
+        if($model->load(Yii::$app->request->post())){
+            $model=self::upload($model);
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->emotionid]);
+            }
+        }
+        else{
+            var_dump($model->getErrors());
             return $this->render('create', [
                 'model' => $model,
             ]);
         }
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->emotionid]);
+//        } else {
+//            return $this->render('create', [
+//                'model' => $model,
+//            ]);
+//        }
     }
 
     /**
@@ -84,10 +106,14 @@ class EmotionController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->emotionid]);
-        } else {
-            return $this->render('update', [
+        if($model->load(Yii::$app->request->post())){
+            $model=self::upload($model);
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->emotionid]);
+            }
+        }
+        else{
+            return $this->render('create', [
                 'model' => $model,
             ]);
         }

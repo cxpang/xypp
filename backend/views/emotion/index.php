@@ -25,7 +25,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'emotionid',
             'emotionname',
 //            'emotioncontent:ntext',
-            'emotionimage',
+            [
+                'attribute'=>'emotionimage',
+                'format' => ['raw',],
+                'value'=>function($dataProvider){
+                    return Html::img('http://'.$dataProvider->emotionimage,['alt' => '缩略图','width' => 80]);
+                }
+            ],
             'uid',
             [
                 'attribute'=>'发帖人',
