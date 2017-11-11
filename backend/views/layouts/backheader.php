@@ -51,7 +51,6 @@ AppAsset::register($this);
             ['label' => '追星剧场评论管理', 'url' => ['/starcomment/index']],
             ['label' => '竞技空间管理', 'url' => ['/compet/index']],
             ['label' => '竞技空间评论管理', 'url' => ['/competcomment/index']],
-            ['label' => '追梦天涯管理', 'url' => ['#']],
         ]],
         ['label'=>'学习管理','items'=>[
             ['label' => '旧书市场管理', 'url' => ['/oldbook/index']],

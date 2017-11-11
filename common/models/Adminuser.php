@@ -48,6 +48,9 @@ class Adminuser extends \yii\db\ActiveRecord implements IdentityInterface
             [['address'], 'string', 'max' => 200],
             [['email', 'upicture'], 'string', 'max' => 50],
             [['uphone'], 'string', 'max' => 11],
+            [['username'], 'unique'],
+            [['email'], 'unique'],
+            [['uphone'], 'unique'],
         ];
     }
 

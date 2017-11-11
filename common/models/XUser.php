@@ -43,7 +43,6 @@ class XUser extends \yii\db\ActiveRecord implements IdentityInterface
             [['password'], 'string', 'max' => 255],
             [['uphone'], 'string', 'max' => 11],
             [['username'], 'unique'],
-            [['password'], 'unique'],
             [['email'], 'unique'],
             [['uphone'], 'unique'],
         ];

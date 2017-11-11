@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>date('Y-m-d H:i:s',$model->createtime),
             ],
             [
-                'attribute'=>'发布时间',
+                'attribute'=>'更新时间',
                 'value'=>date('Y-m-d H:i:s',$model->updatetime),
             ],
             'status',
