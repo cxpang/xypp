@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\web\ForbiddenHttpException;
 
 /**
  * StarController implements the CRUD actions for Star model.
@@ -73,6 +74,9 @@ class StarController extends Controller
      */
     public function actionCreate()
     {
+        if(!Yii::$app->user->can('createStar')){
+            throw new ForbiddenHttpException('对不起您没有进行该操作的权限');
+        }
         $model = new Star();
 
         if($model->load(Yii::$app->request->post())){
@@ -97,6 +101,9 @@ class StarController extends Controller
      */
     public function actionUpdate($id)
     {
+        if(!Yii::$app->user->can('updateStar')){
+            throw new ForbiddenHttpException('对不起您没有进行该操作的权限');
+        }
         $model = $this->findModel($id);
 
         if($model->load(Yii::$app->request->post())){
@@ -120,6 +127,9 @@ class StarController extends Controller
      */
     public function actionDelete($id)
     {
+        if(!Yii::$app->user->can('deleteStar')){
+            throw new ForbiddenHttpException('对不起您没有进行该操作的权限');
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

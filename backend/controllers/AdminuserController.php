@@ -3,10 +3,13 @@
 namespace backend\controllers;
 
 use backend\models\Resetpwd;
+use common\models\AuthAssignment;
+use common\models\AuthItem;
 use Yii;
 use common\models\Adminuser;
 use common\models\AdminuserSearch;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use backend\models\Adminsign;
@@ -143,5 +146,45 @@ class AdminuserController extends Controller
         return $this->render('resetpwd',[
             'model'=>$model,
         ]);
+    }
+    public function actionPrivilege($id){
+        if(Yii::$app->user->id!=3){
+             throw new ForbiddenHttpException('对不起，您不是系统管理员');
+        }
+        //第一步找出所有权限，提供给checkbox
+        $allprivileges=AuthItem::find()->select(['name','description'])->where(['type'=>1])->orderBy('description')->all();
+        foreach ($allprivileges as $pri){
+            $allprivilegesArray[$pri->name]=$pri->description;
+
+        }
+        //第二步找出当前用户的权限
+        $authAssignments=AuthAssignment::find()->select(['item_name'])->where(['user_id'=>$id])->all();
+        $authAssignmentsarray=array();
+        foreach ($authAssignments as $authAssignment){
+            array_push($authAssignmentsarray,$authAssignment->item_name);
+        }
+        //第三部，根据表单提交的数据更新AuthAssignment表，从而使用户角色发送变化
+        if(isset($_POST['newPri'])){
+            $result=AuthAssignment::find()->where(['user_id'=>$id])->all();
+            if($result){
+            AuthAssignment::deleteAll('user_id=:id',[':id'=>$id]);
+            }
+            $newPri=$_POST['newPri'];
+            $arrlen=count($newPri);
+            for($x=0;$x<$arrlen;$x++){
+                $apri=new AuthAssignment();
+                $apri->item_name=$newPri[$x];
+                $apri->user_id=$id;
+                $apri->created_at=time();
+                $apri->save();
+
+            }
+            return $this->redirect(['index']);
+        }
+
+        //第四部，渲染表单
+        return $this->render('privilege',['id'=>$id,'allprivilegesArray'=>$allprivilegesArray,
+            'authAssignmentsarray'=>$authAssignmentsarray]);
+
     }
 }

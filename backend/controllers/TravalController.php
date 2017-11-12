@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\web\ForbiddenHttpException;
 
 /**
  * TravalController implements the CRUD actions for Traval model.
@@ -64,6 +65,9 @@ class TravalController extends Controller
      */
     public function actionCreate()
     {
+        if(!Yii::$app->user->can('createTraval')){
+            throw new ForbiddenHttpException('对不起您没有进行该操作的权限');
+        }
         $model = new Traval();
         if($model->load(Yii::$app->request->post())){
             $model=self::upload($model);
@@ -104,6 +108,9 @@ class TravalController extends Controller
      */
     public function actionUpdate($id)
     {
+        if(!Yii::$app->user->can('updateTraval')){
+            throw new ForbiddenHttpException('对不起您没有进行该操作的权限');
+        }
         $model = $this->findModel($id);
 
         if($model->load(Yii::$app->request->post())){
@@ -127,6 +134,9 @@ class TravalController extends Controller
      */
     public function actionDelete($id)
     {
+        if(!Yii::$app->user->can('deleteTraval')){
+            throw new ForbiddenHttpException('对不起您没有进行该操作的权限');
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

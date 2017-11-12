@@ -6,9 +6,11 @@ use Yii;
 use common\models\Room;
 use common\models\RoomSearch;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\filters\AccessControl;
 /**
  * RoomController implements the CRUD actions for Room model.
  */
@@ -70,6 +72,9 @@ class RoomController extends Controller
      */
     public function actionCreate()
     {
+        if(!Yii::$app->user->can('createRoom')){
+            throw new ForbiddenHttpException('对不起您没有进行该操作的权限');
+        }
         $model = new Room();
         $model->createtime=time();
         if($model->load(Yii::$app->request->post())){
@@ -109,6 +114,9 @@ class RoomController extends Controller
      */
     public function actionUpdate($id)
     {
+        if(!Yii::$app->user->can('updateRoom')){
+            throw new ForbiddenHttpException('对不起您没有进行该操作的权限');
+        }
         $model = $this->findModel($id);
         if($model->load(Yii::$app->request->post())){
             $model=self::upload($model);
@@ -138,6 +146,9 @@ class RoomController extends Controller
      */
     public function actionDelete($id)
     {
+        if(!Yii::$app->user->can('deleteRoom')){
+            throw new ForbiddenHttpException('对不起您没有进行该操作的权限');
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

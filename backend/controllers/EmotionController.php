@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\web\ForbiddenHttpException;
 
 /**
  * EmotionController implements the CRUD actions for emotion model.
@@ -73,6 +74,9 @@ class EmotionController extends Controller
      */
     public function actionCreate()
     {
+        if(!Yii::$app->user->can('createEmotion')){
+            throw new ForbiddenHttpException('对不起您没有进行该操作的权限');
+        }
         $model = new emotion();
 
         if($model->load(Yii::$app->request->post())){
@@ -104,6 +108,9 @@ class EmotionController extends Controller
      */
     public function actionUpdate($id)
     {
+        if(!Yii::$app->user->can('updateEmotion')){
+            throw new ForbiddenHttpException('对不起您没有进行该操作的权限');
+        }
         $model = $this->findModel($id);
 
         if($model->load(Yii::$app->request->post())){
@@ -127,6 +134,9 @@ class EmotionController extends Controller
      */
     public function actionDelete($id)
     {
+        if(!Yii::$app->user->can('deleteEmotion')){
+            throw new ForbiddenHttpException('对不起您没有进行该操作的权限');
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

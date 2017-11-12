@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\web\ForbiddenHttpException;
 
 /**
  * MusiumController implements the CRUD actions for Musium model.
@@ -73,6 +74,9 @@ class MusiumController extends Controller
     }
     public function actionCreate()
     {
+        if(!Yii::$app->user->can('createMusium')){
+            throw new ForbiddenHttpException('对不起您没有进行该操作的权限');
+        }
         $model = new Musium();
 
         if($model->load(Yii::$app->request->post())){
@@ -97,6 +101,9 @@ class MusiumController extends Controller
      */
     public function actionUpdate($id)
     {
+        if(!Yii::$app->user->can('updateMusium')){
+            throw new ForbiddenHttpException('对不起您没有进行该操作的权限');
+        }
         $model = $this->findModel($id);
 
         if($model->load(Yii::$app->request->post())){
@@ -120,6 +127,9 @@ class MusiumController extends Controller
      */
     public function actionDelete($id)
     {
+        if(!Yii::$app->user->can('deleteMusium')){
+            throw new ForbiddenHttpException('对不起您没有进行该操作的权限');
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
