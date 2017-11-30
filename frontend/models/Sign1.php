@@ -16,6 +16,7 @@ class Sign1 extends Model
     public $repassword;
     public $verifyCode;
     public $university;
+    public $expe;
 
     /**
      * @inheritdoc
@@ -59,6 +60,7 @@ class Sign1 extends Model
         $user->uphone = $this->uphone;
         $user->email = $this->email;
         $user->university=$this->university;
+        $user->expe=0;
         $user->time =time();
         $user->setPassword($this->password);
         $user->generateAuthKey();

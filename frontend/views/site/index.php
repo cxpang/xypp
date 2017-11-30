@@ -1,10 +1,12 @@
 <?php
-use yii\helpers\Html;
+$this->title = '校园拼客';
+use yii\helpers\Url;
 ?>
+<title>校园拼客</title>
 <div class="main">
     <div class="index-contents">
         <div class="image-contents">
-            <a href=""><img class="image" title="拼房" src="images/hezu.jpg"></a>
+            <a href="<?=Url::to(['room/index']) ?>"><img class="image" title="拼房" src="images/hezu.jpg"></a>
         </div>
         <div class="image-contents">
             <a href=""><img class="image" src="images/lvxing.jpg"></a>

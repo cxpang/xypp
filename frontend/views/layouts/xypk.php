@@ -9,6 +9,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -37,7 +38,7 @@ AppAsset::register($this);
                 <a href="#" class="xiugai">生活</a>
                 <ul class="animenu__nav__child">
                     <li><a href="">旅行故事</a></li>
-                    <li><a href="">合租空间</a></li>
+                    <li><a href="<?=Url::to(['room/index']) ?>">合租空间</a></li>
                     <li><a href="">情感天地</a></li>
                 </ul>
             </li>
