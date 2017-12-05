@@ -17,12 +17,22 @@ AppAsset::register($this);
 <!doctype html>
 <html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="<?= Yii::$app->charset ?>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <?= Html::csrfMetaTags() ?>
+    <title><?= Html::encode($this->title) ?></title>
+    <?php $this->head() ?>
 </head>
 <body>
-<?php $this->beginBody() ?>
+<?php $this->beginBody();
+  ?>
+<div style="display: none;"><?php
+    NavBar::begin();
+    NavBar::end();
+    ?></div>
+
 <div class="htmleaf-container">
     <nav class="animenu">
         <button class="animenu__toggle">
@@ -83,9 +93,9 @@ AppAsset::register($this);
 
                 </li>
                 <li class="juzhong">
-                    <a href="#"><?php echo Yii::$app->user->identity->username; ?></a>
+                    <a href="#"><img style="width: 50px;height: 50px;border-radius: 50%" src="http://<?php  echo Yii::$app->user->identity->upicture;?>"><?php echo Yii::$app->user->identity->username; ?></a>
                     <ul class="animenu__nav__child">
-                        <li><a href="">个人中心</a></li>
+                        <li><a href="<?=Url::to(['person/index'])  ?>">个人中心</a></li>
                         <li><a href="">回复中心</a></li>
                         <li><?php   echo Html::beginForm(['/site/logout'], 'post').Html::submitButton(
                                     '退出' ,['class'=>'buttonlogout']
