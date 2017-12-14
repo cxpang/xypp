@@ -33,7 +33,7 @@ AppAsset::register($this);
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
-            'style'=>'font-size:25px;'
+            'style'=>'font-size:30px;'
         ],
 
     ]);
