@@ -63,4 +63,7 @@ class Room extends \yii\db\ActiveRecord
     public function getStatus0(){
         return $this->hasOne(XUser::className(),['id'=>'uid']);
     }
+    public static function findusername($id){
+        return XUser::find()->where('id',$id);
+    }
 }
