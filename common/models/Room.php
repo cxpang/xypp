@@ -38,7 +38,7 @@ class Room extends \yii\db\ActiveRecord
             [['roomimage'], 'file', 'skipOnEmpty' => true,'extensions' => 'png, jpg'],
             [['roomaddress'], 'string', 'max' => 255],
             [['roomstatus'], 'string', 'max' => 10],
-            [['createtime'], 'string', 'max' => 11],
+            [['createtime'], 'integer'],
             [['uid'],'exist','skipOnError'=>true,'targetClass'=>XUser::className(),'targetAttribute'=>['uid'=>'id']],
         ];
     }

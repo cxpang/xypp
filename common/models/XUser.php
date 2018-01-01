@@ -21,6 +21,7 @@ use yii\web\IdentityInterface;
  * @property string $auth_key
  * @property string $password_reset_token
  * @property integer $time
+ * @property integer $exep
  */
 class XUser extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -67,6 +68,7 @@ class XUser extends \yii\db\ActiveRecord implements IdentityInterface
             'password_reset_token' => 'Password Reset Token',
             'time' => '创建时间',
             'university'=>'所在大学',
+            'expe'=>'用户等级'
         ];
     }
     public function setPassword($password)
