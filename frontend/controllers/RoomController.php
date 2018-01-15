@@ -44,10 +44,10 @@ class RoomController extends Controller
         }
         $room=new Room();
         $roomcontent=new Roomcontent();
-        $roomdetail=$room->find()->leftJoin('x_user','uid=id')->select('room.*,x_user.username')
+        $roomdetail=$room->find()->leftJoin('x_user','uid=id')->select('room.*,x_user.username,x_user.email,x_user.uphone')
             ->where(['room.roomid'=>$roomid])->asArray()->all();
         $content=$roomcontent->find()->leftJoin('x_user','roomcontent.uid=x_user.id')
-            ->select('roomcontent.*,x_user.username,x_user.upicture,x_user.expe')
+            ->select('roomcontent.*,x_user.username,x_user.upicture,x_user.expe,x_user.email,x_user.uphone')
             ->where(['roomcontent.roomid'=>$roomid])->asArray()->all();
         $this->layout='xypk';
         return $this->render('detail',[

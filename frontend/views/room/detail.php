@@ -55,6 +55,18 @@ $this->title = '合租空间详细信息';
                     <strong><?=$roomdetail[0]['username']   ?></strong>
                 </dd>
                 <dt>
+                    邮箱:
+                </dt>
+                <dd>
+                    <strong><?=$roomdetail[0]['email']   ?></strong>
+                </dd>
+                <dt>
+                    手机号:
+                </dt>
+                <dd>
+                    <strong><?=$roomdetail[0]['uphone']   ?></strong>
+                </dd>
+                <dt>
                     发布时间:
                 </dt>
                 <dd>
