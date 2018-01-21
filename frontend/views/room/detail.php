@@ -115,6 +115,7 @@ $this->title = '合租空间详细信息';
                                 <p>
                                     <em><?=$row['contenttext']?></em>
                                 </p>
+                                <button class="btn-primary">回复</button>
                             </div>
                             <div class="col-md-2" style="margin-top: 120px">
                                     <?=date('Y-m-d H:i:s',$row['createtime'])?>
