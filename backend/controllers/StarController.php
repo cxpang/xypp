@@ -63,7 +63,7 @@ class StarController extends Controller
         $imageName=time().rand(100,900).'.'.$ext;
         $path='../../uploads/';
         $image->saveAs($path.$imageName);
-        $model->startimage='127.0.0.1/xypk/uploads/'.$imageName;
+        $model->startimage='/xypk/uploads/'.$imageName;
         return $model;
     }
 

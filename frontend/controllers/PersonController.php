@@ -35,10 +35,10 @@ class PersonController extends Controller
     public function handleupload($userimage){
         $type=substr($userimage['file']['name'], strrpos($userimage['file']['name'], '.'));
         $temp=$userimage['file']['tmp_name'];
-        $imageName=time().rand(100,900).'userphoto'.$type;
+        $imageName=time().rand(100,900).'userphotos'.$type;
         $path='../../uploads/'.$imageName;
         move_uploaded_file($temp, $path);
-        return '127.0.0.1/xypk/uploads/'.$imageName;
+        return '/xypk/uploads/'.$imageName;
     }
     protected function findModel($id)
     {

@@ -96,7 +96,7 @@ class TravalController extends Controller
         $imageName=time().rand(100,900).'.'.$ext;
         $path='../../uploads/';
         $image->saveAs($path.$imageName);
-        $model->travalimage='127.0.0.1/xypk/uploads/'.$imageName;
+        $model->travalimage='/xypk/uploads/'.$imageName;
         return $model;
     }
 

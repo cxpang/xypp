@@ -24,7 +24,7 @@ $this->title = '个人中心';
                                 <div class="col-lg-2"></div> <div class="col-lg-2"style="text-align: right">用户名:</div><div class="col-lg-8"><?=Yii::$app->user->identity->username?></div>
                            </div>
                             <div class="row">
-                                <div class="col-lg-2"></div><div class="col-lg-2"style="text-align: right">头像:</div><div class="col-lg-8"><img alt="140x140" style="width: 200px;height: 220px;" src="http://<?=Yii::$app->user->identity->upicture?>" class="img-circle" /></div>
+                                <div class="col-lg-2"></div><div class="col-lg-2"style="text-align: right">头像:</div><div class="col-lg-8"><img alt="140x140" style="width: 200px;height: 220px;" src="<?=Yii::$app->user->identity->upicture?>" class="img-circle" /></div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-2"></div><div class="col-lg-2"style="text-align: right">性别:</div><div class="col-lg-8"><?=Yii::$app->user->identity->sex?></div>
@@ -99,7 +99,7 @@ $this->title = '个人中心';
                     <div class="col-lg-2"></div> <div class="col-lg-2"style="text-align: right">用户名:</div><div class="col-lg-8"><?=Yii::$app->user->identity->username?></div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-2"></div><div class="col-lg-2"style="text-align: right">头像:</div><div class="col-lg-6"><img id="userimage" style="width: 200px;height: 220px;" src="http://<?=Yii::$app->user->identity->upicture?>" class="img-circle" /></div><div class="col-lg-2"><button type="button" class="btn btn-primary btn-default" onclick="inputfile()">更换头像</button><input type="file" id="newimage" onchange="uploadfile()" style="display: none;"><input type="text" style="display: none;" value="<?=Yii::$app->user->identity->upicture?>" id="imagepath"></div>
+                    <div class="col-lg-2"></div><div class="col-lg-2"style="text-align: right">头像:</div><div class="col-lg-6"><img id="userimage" style="width: 200px;height: 220px;" src="<?=Yii::$app->user->identity->upicture?>" class="img-circle" /></div><div class="col-lg-2"><button type="button" class="btn btn-primary btn-default" onclick="inputfile()">更换头像</button><input type="file" id="newimage" onchange="uploadfile()" style="display: none;"><input type="text" style="display: none;" value="<?=Yii::$app->user->identity->upicture?>" id="imagepath"></div>
                 </div>
                 <div class="row">
                     <div class="col-lg-2"></div><div class="col-lg-2"style="text-align: right">性别:</div><div class="col-lg-8">

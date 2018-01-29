@@ -12,7 +12,7 @@ $this->title = '合租空间详细信息';
 <div class="container" style="margin-top: 80px;margin-bottom: 100px">
     <div class="row clearfix">
         <div class="col-md-2 column">
-            <img style="width: 150px;height: 150px;margin-bottom: 50px" alt="140x140" src="http://<?php  echo Yii::$app->user->identity->upicture;?>" class="img-circle" />
+            <img style="width: 150px;height: 150px;margin-bottom: 50px" alt="140x140" src="<?php  echo Yii::$app->user->identity->upicture;?>" class="img-circle" />
             <p class="lead text-success">
                当前用户:<strong><?php echo Yii::$app->user->identity->username   ?></strong>
             </p>
@@ -82,7 +82,7 @@ $this->title = '合租空间详细信息';
             <div class="carousel slide"  id="carousel-612878">
                 <div class="carousel-inner">
                     <div class="item active" >
-                        <img  alt="" class="center-block" src="http://<?=$roomdetail[0]['roomimage'] ?>" />
+                        <img  alt="" class="center-block" src="<?=$roomdetail[0]['roomimage'] ?>" />
                         <div class="carousel-caption">
                             <h4>
                                 房间照片
@@ -107,7 +107,7 @@ $this->title = '合租空间详细信息';
                         <?php foreach ($content as $row){  ?>
                          <div class="col-md-12" style="border: 1px solid #ddd">
                             <div class="col-md-2" style="margin-top: 20px">
-                                <img style="width: 80px;height: 80px" title="评论人:<?=$row['username']?>" class="img-circle" src="http://<?=$row['upicture']?>">
+                                <img style="width: 80px;height: 80px" title="评论人:<?=$row['username']?>" class="img-circle" src="<?=$row['upicture']?>">
                                 <br />
                                 <span style="margin-left: 10px;"><?=$row['username']?></span>
                             </div>
@@ -115,9 +115,10 @@ $this->title = '合租空间详细信息';
                                 <p>
                                     <em><?=$row['contenttext']?></em>
                                 </p>
-                                <button class="btn-primary">回复</button>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#showmorecontent" onclick="showmoreres(<?=$row['roomcontentid']?>)">查看更多回复</button><br />
                             </div>
-                            <div class="col-md-2" style="margin-top: 120px">
+                            <div class="col-md-2" style="margin-top: 50px">
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#rescontent" onclick="editres(<?=$row['roomcontentid']?>)">回复</button><br />
                                     <?=date('Y-m-d H:i:s',$row['createtime'])?>
                             </div>
                          </div>
@@ -140,3 +141,98 @@ $this->title = '合租空间详细信息';
         </div>
     </div>
 </div>
+<div class="modal fade" id="rescontent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <?php $form = ActiveForm::begin(['method' => "post",'action'=>Url::to(['room/addres']),'options' => ['style' => 'margin-top: 10px;margin-bottom:10px;'] ]); ?>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">请输入回复内容</h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="form-control" name="roomid" value="<?=Yii::$app->request->get('roomid')?>" style="display: none">
+
+                <input type="text" class="form-control" name="roomcontentid" id="roomcontentid" style="display: none">
+                <input type="text" class="form-control" name="uid" id="uid" value="<?=Yii::$app->user->getId()?>" style="display: none">
+                <input type="text" class="form-control" name="roomcontentres" id="roomcontentres" required>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-primary">确定</button>
+            </div>
+        </div>
+        <?php $form = ActiveForm::end(); ?>
+    </div>
+</div>
+<div class="modal fade" id="showmorecontent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                更多回复信息
+            </div>
+            <div class="modal-body" style="font-size: 18px" id="test" >
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clearall()">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function editres(id) {
+        $("#roomcontentid").val(id);
+    }
+    function clearall() {
+        $("#test").empty()
+
+    }
+    function formatetime(time) {
+        var now= new Date(parseInt(time));
+        var year = now.getFullYear(),
+            month = now.getMonth() + 1,
+            date = now.getDate(),
+            hour = now.getHours(),
+            minute = now.getMinutes(),
+            second = now.getSeconds();
+        timeFormat = year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+
+        return timeFormat;
+    }
+    function showmoreres(roomcontentid) {
+        var roomcontentid=roomcontentid;
+        var formdata=new FormData();
+        formdata.append('roomcontentid',roomcontentid);
+        $.ajax({
+            url:'<?=Url::to(['room/showcontentres']) ?>',
+            type:'POST',
+            cache:false,
+            data:formdata,
+            dataType:'json',
+            processData:false,
+            contentType:false,
+            success:function (data) {
+                if(data){
+                    var jsondata=eval(data);
+                    $.each(jsondata,function (index,objval) {
+                         var div="<div>";
+                         div+="<span>"+objval['username']+":";
+//                         div+="<img src='";
+//                         div+=+objval['upicture']+"'";
+//                         div+=">";
+                         div+="</span>";
+                         div+="<span>"+objval['contentrestext']+"</span>";
+                         div+="<span style='float: right'>"+formatetime(objval['createtime'])+"</span>";
+                        div+="</div>";
+                         $("#test").append(div);
+
+
+                        
+                    })
+                }
+
+            }
+        })
+
+    }
+</script>

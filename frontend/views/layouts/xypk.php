@@ -93,7 +93,7 @@ AppAsset::register($this);
 
                 </li>
                 <li class="juzhong">
-                    <a href="#"><img style="width: 50px;height: 50px;border-radius: 50%" src="http://<?php  echo Yii::$app->user->identity->upicture;?>"><?php echo Yii::$app->user->identity->username; ?></a>
+                    <a href="#"><img style="width: 50px;height: 50px;border-radius: 50%" src="<?php  echo   Yii::$app->user->identity->upicture;?>"><?php echo Yii::$app->user->identity->username; ?></a>
                     <ul class="animenu__nav__child">
                         <li><a href="<?=Url::to(['person/index'])  ?>">个人中心</a></li>
                         <li><a href="<?=Url::to(['xypk/index'])  ?>">拼客中心</a></li>

@@ -63,7 +63,7 @@ class OldbookController extends Controller
         $imageName=time().rand(100,900).'.'.$ext;
         $path='../../uploads/';
         $image->saveAs($path.$imageName);
-        $model->oldbookimage='127.0.0.1/xypk/uploads/'.$imageName;
+        $model->oldbookimage='/xypk/uploads/'.$imageName;
         return $model;
     }
 

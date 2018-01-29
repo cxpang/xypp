@@ -63,7 +63,7 @@ class CompetController extends Controller
         $imageName=time().rand(100,900).'.'.$ext;
         $path='../../uploads/';
         $image->saveAs($path.$imageName);
-        $model->competimage='127.0.0.1/xypk/uploads/'.$imageName;
+        $model->competimage='/xypk/uploads/'.$imageName;
         return $model;
     }
 

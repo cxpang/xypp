@@ -63,7 +63,7 @@ class EmotionController extends Controller
         $imageName=time().rand(100,900).'.'.$ext;
         $path='../../uploads/';
         $image->saveAs($path.$imageName);
-        $model->emotionimage='127.0.0.1/xypk/uploads/'.$imageName;
+        $model->emotionimage='/xypk/uploads/'.$imageName;
         return $model;
     }
 

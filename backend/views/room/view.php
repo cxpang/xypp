@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'roomimage',
                 'format' => ['raw',],
                 'value'=>function($model){
-                    return Html::img('http://'.$model->roomimage,['alt' => '缩略图','width' => 80]);
+                    return Html::img($model->roomimage,['alt' => '缩略图','width' => 80]);
                 }
             ],
             'roomprice',

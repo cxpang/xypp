@@ -14,6 +14,7 @@ use common\models\XUser;
 use common\models\Room;
 use common\models\Roomcontent;
 use yii\web\NotFoundHttpException;
+use common\models\Roomcontentres;
 class RoomController extends Controller
 {
     public function actionIndex()
@@ -123,7 +124,38 @@ class RoomController extends Controller
         $imageName=time().rand(100,900).'roomtest'.$type;
         $path='../../uploads/'.$imageName;
         move_uploaded_file($temp, $path);
-        return '127.0.0.1/xypk/uploads/'.$imageName;
+        return '/xypk/uploads/'.$imageName;
+    }
+    public function actionAddres(){
+        $info=\Yii::$app->request->post();
+//        var_dump($info);
+//        exit(0);
+        $roomcontentres=$info['roomcontentres'];
+        $uid=$info['uid'];
+        $roomid=$info['roomid'];
+        $roomcententid=$info['roomcontentid'];
+        $res=new Roomcontentres();
+        $res->roomcontentid=$roomcententid;
+        $res->uid=$uid;
+        $res->contentrestext=$roomcontentres;
+        $res->createtime=time();
+        if($res->save()){
+            return $this->redirect(['room/detail','roomid'=>$roomid]);
+        }
+        else{
+            var_dump($res->getErrors());
+        }
+    }
+    public  function actionShowcontentres(){
+        if(\Yii::$app->request->isPost){
+            $info=\Yii::$app->request->post();
+            $roomcontentid=$info['roomcontentid'];
+            $res=new Roomcontentres();
+            $result=$res->find()->leftJoin('x_user','x_user.id=roomcontentres.uid')
+                ->select('x_user.username,x_user.upicture,roomcontentres.*')->where(['roomcontentid'=>$roomcontentid])->asArray()->all();
+            return json_encode($result);
+
+        }
     }
 
 }

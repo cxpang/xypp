@@ -102,7 +102,7 @@ class RoomController extends Controller
         $imageName=time().rand(100,900).'.'.$ext;
         $path='../../uploads/';
         $image->saveAs($path.$imageName);
-        $model->roomimage='127.0.0.1/xypk/uploads/'.$imageName;
+        $model->roomimage='/xypk/uploads/'.$imageName;
         return $model;
     }
 

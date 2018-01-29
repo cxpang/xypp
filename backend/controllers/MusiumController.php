@@ -69,7 +69,7 @@ class MusiumController extends Controller
         $imageName=time().rand(100,900).'.'.$ext;
         $path='../../uploads/';
         $image->saveAs($path.$imageName);
-        $model->musiumimage='127.0.0.1/xypk/uploads/'.$imageName;
+        $model->musiumimage='/xypk/uploads/'.$imageName;
         return $model;
     }
     public function actionCreate()

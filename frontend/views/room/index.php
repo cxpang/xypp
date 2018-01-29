@@ -93,7 +93,7 @@ $this->title = '合租空间';
                             </button>
                         </h2>
                         <div class="imagesdiv">
-                            <?=Html::img('http://'.$row['roomimage'],['alt' => '缩略图','width' => 200,'height'=>200])?>
+                            <?=Html::img($row['roomimage'],['alt' => '缩略图','width' => 200,'height'=>200])?>
                         </div>
 
                     </div>
