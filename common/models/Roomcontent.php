@@ -38,7 +38,6 @@ class Roomcontent extends \yii\db\ActiveRecord
 
         ];
     }
-
     /**
      * @inheritdoc
      */

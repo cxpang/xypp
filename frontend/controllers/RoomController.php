@@ -15,6 +15,7 @@ use common\models\Room;
 use common\models\Roomcontent;
 use yii\web\NotFoundHttpException;
 use common\models\Roomcontentres;
+use common\services\DelroomService;
 class RoomController extends Controller
 {
     public function actionIndex()
@@ -155,6 +156,42 @@ class RoomController extends Controller
                 ->select('x_user.username,x_user.upicture,roomcontentres.*')->where(['roomcontentid'=>$roomcontentid])->asArray()->all();
             return json_encode($result);
 
+        }
+    }
+    public function actionFinishroom(){
+        if(\Yii::$app->request->isPost){
+            $info=\Yii::$app->request->post();
+            $roomid=$info['roomid'];
+            $model=self::findRoom($roomid);
+            $model->roomstatus='已结贴';
+            if($model->save()) {
+                return json_encode('ok');
+            }
+            return false;
+
+        }
+    }
+    protected function findRoom($roomid){
+        if (($model = Room::findOne($roomid)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('房间号不存在.');
+        }
+    }
+
+    public function actionDeleteroom(){
+        if(\Yii::$app->request->isPost){
+            $info=\Yii::$app->request->post();
+            $roomid=$info['roomid'];
+//            $roommodel=self::findRoom($roomid);
+//            if($roommodel->delete()) {
+//                return json_encode('ok');
+//            }
+            $delroom=new DelroomService();
+            if($delroom->delRoom($roomid)){
+                return json_encode('ok');
+            }
+            return false;
         }
     }
 

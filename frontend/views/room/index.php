@@ -32,19 +32,19 @@ $this->title = '合租空间';
                 </ol>
                 <div class="carousel-inner">
                     <div class="item">
-                        <img alt="" src="images/hezuzhaopian001.jpg" class="img-responsive center-block" />
+                        <img alt="" src="images/hezuzhaopian001.jpg" style="width: 1600px;height: 500px;" class="img-responsive center-block" />
                         <div class="carousel-caption">
 
                         </div>
                     </div>
                     <div class="item">
-                        <img alt="" src="images/hezuzhaopian002.jpg" class="img-responsive center-block" />
+                        <img alt="" src="images/hezuzhaopian002.jpg" style="width: 1600px;height: 500px;" class="img-responsive center-block" />
                         <div class="carousel-caption">
 
                         </div>
                     </div>
                     <div class="item active">
-                        <img alt="" src="images/hezuzhaopian003.jpg" class="img-responsive center-block" />
+                        <img alt="" src="images/hezuzhaopian003.jpg" style="width: 1600px;height: 500px;" class="img-responsive center-block" />
                         <div class="carousel-caption">
 
                         </div>

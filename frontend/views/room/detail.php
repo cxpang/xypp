@@ -48,11 +48,16 @@ $this->title = '合租空间详细信息';
                 <dd>
                     <strong><?=$roomdetail[0]['roomaddress']   ?></strong>
                 </dd>
-                <dt>
+                <dt style="    margin-top: 15px;">
                     发布人:
                 </dt>
                 <dd>
-                    <strong><?=$roomdetail[0]['username']   ?></strong>
+                    <strong><?=$roomdetail[0]['username'] ?></strong>
+                    <?php if(yii::$app->user->identity->getId()!=$roomdetail[0]['uid']){ ?>
+                        <button type="button" class="btn btn-default btn-lg" style="margin-left: 150px">
+                            <span class="glyphicon glyphicon-envelope"></span>发送私信
+                        </button>
+                    <?php }?>
                 </dd>
                 <dt>
                     邮箱:
@@ -78,11 +83,20 @@ $this->title = '合租空间详细信息';
                 <dd>
                     <strong><?=$roomdetail[0]['roomstatus']   ?></strong>
                 </dd>
+                <?php if(yii::$app->user->identity->getId()==$roomdetail[0]['uid']){ ?>
+                <dt>
+                    操作:
+                </dt>
+                <dd>
+                    <button class="btn btn-primary" onclick="finshroom('<?=$roomdetail[0]['roomid']?>','<?=$roomdetail[0]['roomstatus']?>');">结贴</button>
+                    <button class="btn btn-primary" onclick="deleteroom('<?=$roomdetail[0]['roomid']?>');">删除</button>
+                </dd>
+                <?php }?>
             </dl>
             <div class="carousel slide"  id="carousel-612878">
                 <div class="carousel-inner">
                     <div class="item active" >
-                        <img  alt="" class="center-block" src="<?=$roomdetail[0]['roomimage'] ?>" />
+                        <img  alt="" style="width: 1600px;height: 500px" class="center-block" src="<?=$roomdetail[0]['roomimage'] ?>" />
                         <div class="carousel-caption">
                             <h4>
                                 房间照片
@@ -188,7 +202,7 @@ $this->title = '合租空间详细信息';
 
     }
     function formatetime(time) {
-        var now= new Date(parseInt(time));
+        var now= new Date(parseInt(time)*1000);
         var year = now.getFullYear(),
             month = now.getMonth() + 1,
             date = now.getDate(),
@@ -234,5 +248,47 @@ $this->title = '合租空间详细信息';
             }
         })
 
+    }
+    function finshroom(roomid,roomstatus) {
+        if(roomstatus=='已结贴'){
+            alert("您无须进行该操作");
+            return false;
+        }
+        var formdata=new FormData();
+        formdata.append('roomid',roomid);
+        $.ajax({
+            url: '<?=Url::to(['room/finishroom']) ?>',
+            type: 'POST',
+            cache: false,
+            data: formdata,
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                 if(data){
+                     alert("恭喜您，结贴完成");
+                     window.location.reload();
+                 }
+            }
+        })
+    }
+    function deleteroom(roomid) {
+        var formdata=new FormData();
+        formdata.append('roomid',roomid);
+        $.ajax({
+            url: '<?=Url::to(['room/deleteroom']) ?>',
+            type: 'POST',
+            cache: false,
+            data: formdata,
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                if(data){
+                    alert("删除成功");
+                    window.location.href=document.referrer;
+                }
+            }
+        })
     }
 </script>

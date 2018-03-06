@@ -9,10 +9,10 @@ use yii\helpers\Url;
             <a href="<?=Url::to(['room/index']) ?>"><img class="image" title="拼房" src="images/hezu.jpg"></a>
         </div>
         <div class="image-contents">
-            <a href=""><img class="image" src="images/lvxing.jpg"></a>
+            <a href="<?=Url::to(['travel/index']) ?>"><img class="image" src="images/lvxing.jpg"></a>
         </div>
         <div class="image-contents">
-            <a href=""> <img style="margin-left: 50px;" class="image" src="images/qinggan.jpg"></a>
+            <a href="<?=Url::to(['emotion/index'])?>"> <img style="margin-left: 50px;" class="image" src="images/qinggan.jpg"></a>
         </div>
         <div class="image-contents">
             <a href=""><img class="image" src="images/zhuixing.jpg"></a>

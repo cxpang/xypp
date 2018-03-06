@@ -20,7 +20,9 @@ $this->title = '回复中心';
                 </li>
 
             </ul>
-            <a href="<?=Url::to(['room/detail','roomid'=>$roomresponse[0]['roomid']])?>" style="text-decoration: none"> <div class="panel panel-primary" style="cursor: pointer">
+            <?php if(!empty($roomresponse)){?>
+            <a href="<?=Url::to(['room/detail','roomid'=>$roomresponse[0]['roomid']])?>" style="text-decoration: none">
+                <div class="panel panel-primary" style="cursor: pointer">
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         <img style="width: 50px;height: 50px;border-radius: 50%" src="<?=$roomresponse[0]['upicture']?>"><?=$roomresponse[0]['username']?>
@@ -38,6 +40,7 @@ $this->title = '回复中心';
                 </div>
             </div>
             </a>
+            <?php }?>
         </div>
         <div class="col-md-1 column">
         </div>

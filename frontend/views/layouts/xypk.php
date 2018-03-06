@@ -27,7 +27,7 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody();
-  ?>
+?>
 <div style="display: none;"><?php
     NavBar::begin();
     NavBar::end();
@@ -47,9 +47,9 @@ AppAsset::register($this);
             <li class="juzhong">
                 <a href="#" class="xiugai">生活</a>
                 <ul class="animenu__nav__child">
-                    <li><a href="">旅行故事</a></li>
+                    <li><a href="<?=Url::to(['travel/index']) ?>">旅行故事</a></li>
                     <li><a href="<?=Url::to(['room/index']) ?>">合租空间</a></li>
-                    <li><a href="">情感天地</a></li>
+                    <li><a href="<?=Url::to(['emotion/index']) ?>">情感天地</a></li>
                 </ul>
             </li>
             <li class="juzhong">
@@ -71,22 +71,22 @@ AppAsset::register($this);
             <li>
 
             </li>
-<!--            --><?php
-//            if(Yii::$app->user->isGuest){
-//                echo '<li>'."<a href='index.php?r=/site/signup' style='margin-left: 900px;'>注册</a>".'</li>';
-//                echo '<li>'."<a href='index.php?r=/site/login' style='margin-left: 900px;'>登录</a>".'</li>';
-//            }
-//            else{
-//                echo '<li>'."<a href='index.php?r=/site/logout' style='margin-left: 900px;'>退出</a>".'</li>';
-//            }
-//            ?>
+            <!--            --><?php
+            //            if(Yii::$app->user->isGuest){
+            //                echo '<li>'."<a href='index.php?r=/site/signup' style='margin-left: 900px;'>注册</a>".'</li>';
+            //                echo '<li>'."<a href='index.php?r=/site/login' style='margin-left: 900px;'>登录</a>".'</li>';
+            //            }
+            //            else{
+            //                echo '<li>'."<a href='index.php?r=/site/logout' style='margin-left: 900px;'>退出</a>".'</li>';
+            //            }
+            //            ?>
             <?php if(Yii::$app->user->isGuest){?>
-            <li >
-                <a href="index.php?r=/site/signup" style="margin-left: 900px;">注册</a>
-            </li>
-            <li>
-                <a href="index.php?r=site/login">登录</a>
-            </li>
+                <li >
+                    <a href="index.php?r=/site/signup" style="margin-left: 900px;">注册</a>
+                </li>
+                <li>
+                    <a href="index.php?r=site/login">登录</a>
+                </li>
             <?php   }?>
             <?php if(!Yii::$app->user->isGuest){  ?>
                 <li style="width: 900px;">
