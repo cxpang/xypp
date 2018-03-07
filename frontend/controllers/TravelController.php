@@ -16,8 +16,18 @@ class TravelController extends Controller
     {
         $contion="1=1";
 
+        if(\Yii::$app->request->isGet){
+            $info=\Yii::$app->request->get();
+            if(isset($info['travelname'])){
+                $contion .=" and a.travalname like '%".$info['travelname']."%'";
+            }
+            if(isset($info['status'])&&$info['status']!='全部'){
+                $contion .=" and a.status='".$info['status']."'";
+            }
+        }
+
         $query=Traval::find()->from('traval as a')->leftJoin('x_user as b','a.uid=b.id')
-            ->select('a.*,b.username')->orderBy('updatetime desc')
+            ->select('a.*,b.username')->where($contion)->orderBy('updatetime desc')
             ->asArray()->all();
 
         $this->layout='xypk';

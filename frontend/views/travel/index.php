@@ -59,7 +59,7 @@ $this->title = '旅行故事';
 
         </div>
         <div class="col-md-12" style="border: 1px solid #e4e6eb;margin-top: 20px">
-            <?php $form = ActiveForm::begin(['method' => "post",'action'=>Url::to(['travel/index']),'options' => ['style' => 'margin-top: 10px;margin-bottom:10px;'] ]); ?>
+            <?php $form = ActiveForm::begin(['method' => "get",'action'=>Url::to(['travel/index']),'options' => ['style' => 'margin-top: 10px;margin-bottom:10px;'] ]); ?>
             <div class="col-md-3">
                 <input type="text" class="form-control"  name="travelname" value="<?=Yii::$app->request->get('travelname')?>" placeholder="旅行关键词">
             </div>
