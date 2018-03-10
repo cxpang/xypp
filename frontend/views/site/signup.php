@@ -11,7 +11,7 @@ use yii\captcha\Captcha;
 $this->title = '欢迎注册';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-signup" style="margin-top: 80px;margin-left: 250px;">
+<div class="site-login col-md-10 col-md-offset-2 ">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>请将以下表单填写完整</p>

@@ -55,17 +55,17 @@ AppAsset::register($this);
             <li class="juzhong">
                 <a href="#" class="xiugai">娱乐</a>
                 <ul class="animenu__nav__child">
-                    <li><a href="">追星剧场</a></li>
-                    <li><a href="">健身空间</a></li>
-                    <li><a href="">追梦天涯</a></li>
+                    <li><a href="<?=Url::to(['star/index']) ?>">追星剧场</a></li>
+                    <li><a href="<?=Url::to(['compet/index']) ?>">健身空间</a></li>
+<!--                    <li><a href="">追梦天涯</a></li>-->
                 </ul>
             </li>
             <li class="juzhong">
                 <a href="#" class="xiugai">学习</a>
                 <ul class="animenu__nav__child">
-                    <li><a href="">旧书市场</a></li>
-                    <li><a href="">考试有方</a></li>
-                    <li><a href="">图书馆约</a></li>
+                    <li><a href="<?=Url::to(['oldbook/index']) ?>">旧书市场</a></li>
+                    <li><a href="<?=Url::to(['exam/index']) ?>">考试有方</a></li>
+                    <li><a href="<?=Url::to(['musium/index']) ?>">图书馆约</a></li>
                 </ul>
             </li>
             <li>
@@ -82,7 +82,7 @@ AppAsset::register($this);
             //            ?>
             <?php if(Yii::$app->user->isGuest){?>
                 <li >
-                    <a href="index.php?r=/site/signup" style="margin-left: 900px;">注册</a>
+                    <a href="index.php?r=/site/signup">注册</a>
                 </li>
                 <li>
                     <a href="index.php?r=site/login">登录</a>

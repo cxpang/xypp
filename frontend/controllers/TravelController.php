@@ -4,7 +4,6 @@ namespace frontend\controllers;
 
 use yii\web\Controller;
 use common\models\XUser;
-use common\models\Roomcontent;
 use yii\web\NotFoundHttpException;
 use common\models\Traval;
 use common\models\Travalcomment;

@@ -90,7 +90,7 @@ class Emotion extends \yii\db\ActiveRecord
             return false;
         }
     }
-    public function getstr($string){
+    public static function getstr($string){
         $len=strlen($string);
         if($len<400){
             return $len;

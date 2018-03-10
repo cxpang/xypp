@@ -3,62 +3,27 @@ $this->title = '校园拼客';
 use yii\helpers\Url;
 ?>
 <title>校园拼客</title>
-<div class="main">
-    <div class="index-contents">
-        <div class="image-contents">
-            <a href="<?=Url::to(['room/index']) ?>"><img class="image" title="拼房" src="images/hezu.jpg"></a>
-        </div>
-        <div class="image-contents">
-            <a href="<?=Url::to(['travel/index']) ?>"><img class="image" src="images/lvxing.jpg"></a>
-        </div>
-        <div class="image-contents">
-            <a href="<?=Url::to(['emotion/index'])?>"> <img style="margin-left: 50px;" class="image" src="images/qinggan.jpg"></a>
-        </div>
-        <div class="image-contents">
-            <a href=""><img class="image" src="images/zhuixing.jpg"></a>
-        </div>
-        <div class="image-contents">
-            <a href=""> <img class="image" src="images/jianshen.jpg"></a>
-        </div>
-        <div class="image-contents">
-            <a href=""><img class="image" src="images/zhuimeng.jpg"></a>
-        </div>
-        <div class="image-contents">
-            <a href=""><img style="margin-left: -30px;" class="image" src="images/jiushu.jpg"></a>
-        </div>
-        <div class="image-contents">
-            <a href=""> <img style="margin-left: -30px;" class="image" src="images/kaoshi.jpg"></a>
-        </div>
-        <div class="image-contents">
-            <a href=""> <img class="image" src="images/tushuguan.jpg"></a>
-        </div>
+<div class="row" style="text-align: center">
+    <div class="col-md-12">
+        <div class="col-md-4"><a href="<?=Url::to(['room/index']) ?>"><img class="image img-thumbnail" title="拼房" src="images/hezu.jpg" /></a></div>
+        <div class="col-md-4"><a href="<?=Url::to(['travel/index']) ?>"><img class="image img-thumbnail" src="images/lvxing.jpg" /></a></div>
+        <div class="col-md-4"><a href="<?=Url::to(['emotion/index'])?>"> <img class="image img-thumbnail" src="images/qinggan.jpg" /></a></div>
+        <div class="col-md-4"><a href="<?=Url::to(['star/index']) ?>"><img class="image img-thumbnail" src="images/zhuixing.jpg" /></a></div>
+        <div class="col-md-4"> <a href="<?=Url::to(['compet/index']) ?>"> <img class="image img-thumbnail" src="images/jianshen.jpg" /></a></div>
+        <div class="col-md-4"> <a href=""><img class="image img-thumbnail" src="images/zhuimeng.jpg" /></a></div>
+        <div class="col-md-4"><a href="<?=Url::to(['oldbook/index']) ?>"><img class="image img-thumbnail" src="images/jiushu.jpg" /></a></div>
+        <div class="col-md-4"> <a href="<?=Url::to(['exam/index']) ?>"> <img class="image img-thumbnail" src="images/kaoshi.jpg" /></a></div>
+        <div class="col-md-4"> <a href="<?=Url::to(['oldbook/index']) ?>"> <img class="image img-thumbnail" src="images/tushuguan.jpg" /></a></div>
     </div>
 </div>
 <style>
     body{
         background-color:#f5f5f5 ;
     }
-    .image-contents{
-        width: 250px;
-        height: 250px;
-        border: 1px solid #f5f5f5;
-        margin-left: 280px;
-        float: left;
-        cursor: pointer;
-    }
-    .main{
-        height: 100%;
-        width: 100%;
-    }
-    .index-contents{
-        width: 100%;
-        height: 700px;
-        margin: 0 auto;
-        margin-top: 50px;
-    }
     .image{
-        height: 200px;
-        border-radius: 30px;
+        height: 250px;
+        width: 250px;
+        border-radius: 30%;
         margin: 10px;
     }
 

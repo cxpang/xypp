@@ -8,10 +8,10 @@ use Yii;
  * This is the model class for table "star".
  *
  * @property integer $starid
- * @property string $startname
- * @property string $startcontent
- * @property string $startimage
- * @property string $starttime
+ * @property string $starname
+ * @property string $starcontent
+ * @property string $starimage
+ * @property string $startime
  * @property integer $starprice
  * @property integer $uid
  * @property integer $createtime
@@ -37,12 +37,12 @@ class Star extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['startname', 'startcontent', 'starttime', 'starprice', 'uid', 'status'], 'required'],
+            [['starname', 'starcontent', 'starimage', 'startime', 'starprice', 'uid', 'createtime', 'updatetime', 'status'], 'required'],
             [['starprice', 'uid', 'createtime', 'updatetime'], 'integer'],
-            [['startname'], 'string', 'max' => 200],
-            [['startcontent'], 'string', 'max' => 255],
-            [['startimage'], 'file', 'skipOnEmpty' => true,'extensions' => 'png, jpg'],
-            [['starttime'], 'string', 'max' => 20],
+            [['starname'], 'string', 'max' => 200],
+            [['starcontent'], 'string', 'max' => 255],
+            [['starimage'], 'string', 'max' => 50],
+            [['startime'], 'string', 'max' => 20],
             [['status'], 'string', 'max' => 10],
             [['uid'], 'exist', 'skipOnError' => true, 'targetClass' => XUser::className(), 'targetAttribute' => ['uid' => 'id']],
         ];
@@ -55,10 +55,10 @@ class Star extends \yii\db\ActiveRecord
     {
         return [
             'starid' => '追星剧场id',
-            'startname' => '追星剧场名',
-            'startcontent' => '追星剧场内容',
-            'startimage' => '追星剧场照片',
-            'starttime' => '开始时间',
+            'starname' => '追星剧场名',
+            'starcontent' => '追星剧场内容',
+            'starimage' => '追星剧场照片',
+            'startime' => '开始时间',
             'starprice' => '价格',
             'uid' => '发表人',
             'createtime' => '发表时间',

@@ -96,37 +96,118 @@ $this->title = '拼客中心';
                               <?php } ?>
                     </div>
                     <div class="tab-pane" id="panel-255884">
-                       情感
+                        <?php
+                        foreach ($emotion as $row){
+                            ?>
+                            <a href="<?=Url::to(['emotion/detail','emotionid'=>$row['emotionid']])?>" style="text-decoration: none">
+                                <div class="panel panel-primary" style="cursor: pointer;margin-top: 50px;">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                            <img style="width: 50px;height: 50px;border-radius: 50%" src="<?=$row['emotionimage']?>"><?=$row['emotionname']?>
+                                        </h3>
+                                    </div>
+                                    <div class="panel-footer">
+                                        分享时间:<?=date('Y-m-d H:i:s',$row['createtime'])?>
+                                    </div>
+
+                                </div>
+                            </a>
+                        <?php } ?>
                     </div>
                     <div class="tab-pane" id="panel-255885">
-                        <p>
-                            追星剧场
-                        </p>
+                        <?php
+                        foreach ($star as $row){
+                            ?>
+                            <a href="<?=Url::to(['star/detail','starid'=>$row['starid']])?>" style="text-decoration: none">
+                                <div class="panel panel-primary" style="cursor: pointer;margin-top: 50px;">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                            <img style="width: 50px;height: 50px;border-radius: 50%" src="<?=$row['startimage']?>"><?=$row['startname']?>
+                                        </h3>
+                                    </div>
+                                    <div class="panel-footer">
+                                        分享时间:<?=date('Y-m-d H:i:s',$row['createtime'])?>
+                                    </div>
+
+                                </div>
+                            </a>
+                        <?php } ?>
                     </div>
                     <div class="tab-pane" id="panel-255886">
-                        <p>
-                            健身空间
-                        </p>
-                    </div>
-                    <div class="tab-pane" id="panel-255887">
-                        <p>
-                            追梦天涯
-                        </p>
+                        <?php
+                        foreach ($compet as $row){
+                            ?>
+                            <a href="<?=Url::to(['compet/detail','competid'=>$row['competid']])?>" style="text-decoration: none">
+                                <div class="panel panel-primary" style="cursor: pointer;margin-top: 50px;">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                            <img style="width: 50px;height: 50px;border-radius: 50%" src="<?=$row['competimage']?>"><?=$row['competname']?>
+                                        </h3>
+                                    </div>
+                                    <div class="panel-footer">
+                                        分享时间:<?=date('Y-m-d H:i:s',$row['createtime'])?>
+                                    </div>
+
+                                </div>
+                            </a>
+                        <?php } ?>
                     </div>
                     <div class="tab-pane" id="panel-255888">
-                        <p>
-                            旧书市场
-                        </p>
+                        <?php
+                        foreach ($oldbook as $row){
+                            ?>
+                            <a href="<?=Url::to(['oldbook/detail','oldbookid'=>$row['oldbookid']])?>" style="text-decoration: none">
+                                <div class="panel panel-primary" style="cursor: pointer;margin-top: 50px;">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                            <img style="width: 50px;height: 50px;border-radius: 50%" src="<?=$row['oldbookimage']?>"><?=$row['oldbookname']?>
+                                        </h3>
+                                    </div>
+                                    <div class="panel-footer">
+                                        分享时间:<?=date('Y-m-d H:i:s',$row['createtime'])?>
+                                    </div>
+
+                                </div>
+                            </a>
+                        <?php } ?>
                     </div>
                     <div class="tab-pane" id="panel-255889">
-                        <p>
-                            考试有方
-                        </p>
+                        <?php
+                        foreach ($exam as $row){
+                            ?>
+                            <a href="<?=Url::to(['exam/detail','examid'=>$row['examid']])?>" style="text-decoration: none">
+                                <div class="panel panel-primary" style="cursor: pointer;margin-top: 50px;">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                            <img style="width: 50px;height: 50px;border-radius: 50%" src="<?=$row['examimage']?>"><?=$row['examname']?>
+                                        </h3>
+                                    </div>
+                                    <div class="panel-footer">
+                                        分享时间:<?=date('Y-m-d H:i:s',$row['createtime'])?>
+                                    </div>
+
+                                </div>
+                            </a>
+                        <?php } ?>
                     </div>
                     <div class="tab-pane" id="panel-2558811">
-                        <p>
-                            图书馆约
-                        </p>
+                        <?php
+                        foreach ($musium as $row){
+                            ?>
+                            <a href="<?=Url::to(['musium/detail','musiumid'=>$row['musiumid']])?>" style="text-decoration: none">
+                                <div class="panel panel-primary" style="cursor: pointer;margin-top: 50px;">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                            <img style="width: 50px;height: 50px;border-radius: 50%" src="<?=$row['musiumimage']?>"><?=$row['musiumname']?>
+                                        </h3>
+                                    </div>
+                                    <div class="panel-footer">
+                                        分享时间:<?=date('Y-m-d H:i:s',$row['createtime'])?>
+                                    </div>
+
+                                </div>
+                            </a>
+                        <?php } ?>
                     </div>
 
                 </div>
