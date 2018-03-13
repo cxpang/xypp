@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'upicture',
                 'format' => ['raw',],
                 'value'=>function($dataProvider){
-                    return Html::img('http://'.$dataProvider->upicture,['alt' => '缩略图','width' => 80]);
+                    return Html::img($dataProvider->upicture,['alt' => '缩略图','width' => 80]);
                 }
             ],
              'uphone',

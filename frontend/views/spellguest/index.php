@@ -122,7 +122,7 @@ $this->title = '拼客中心';
                                 <div class="panel panel-primary" style="cursor: pointer;margin-top: 50px;">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">
-                                            <img style="width: 50px;height: 50px;border-radius: 50%" src="<?=$row['startimage']?>"><?=$row['startname']?>
+                                            <img style="width: 50px;height: 50px;border-radius: 50%" src="<?=$row['starimage']?>"><?=$row['starname']?>
                                         </h3>
                                     </div>
                                     <div class="panel-footer">

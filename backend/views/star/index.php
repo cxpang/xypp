@@ -23,16 +23,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
              'starid',
-             'startname',
+             'starname',
 //             'startcontent',
             [
-                'attribute'=>'startimage',
+                'attribute'=>'starimage',
                 'format' => ['raw',],
                 'value'=>function($dataProvider){
-                    return Html::img('http://'.$dataProvider->startimage,['alt' => '缩略图','width' => 80]);
+                    return Html::img($dataProvider->starimage,['alt' => '缩略图','width' => 80]);
                 }
             ],
-             'starttime',
+             'startime',
              'starprice',
              'uid',
             [

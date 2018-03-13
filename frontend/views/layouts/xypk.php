@@ -98,6 +98,7 @@ AppAsset::register($this);
                         <li><a href="<?=Url::to(['person/index'])  ?>">个人中心</a></li>
                         <li><a href="<?=Url::to(['spellguest/index'])  ?>">拼客中心</a></li>
                         <li><a href="<?=Url::to(['response/index'])  ?>">回复中心</a></li>
+                        <li><a href="<?=Url::to(['chatpoint/index'])  ?>">聊天中心</a></li>
                         <li><?php   echo Html::beginForm(['/site/logout'], 'post').Html::submitButton(
                                     '退出' ,['class'=>'buttonlogout']
                                 ).Html::endForm() ;     ?></li>

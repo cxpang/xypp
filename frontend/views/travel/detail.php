@@ -52,7 +52,7 @@ $this->title = '旅行故事详细信息';
                     天数:
                 </dt>
                 <dd style="color: #9A0000">
-                    <strong><?=$travaldetail[0]['travalday']   ?>RMB</strong>
+                    <strong><?=$travaldetail[0]['travaldays']   ?></strong>
                 </dd>
                 <dt>
                     内容:

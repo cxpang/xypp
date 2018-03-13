@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'oldbookimage',
                 'format' => ['raw',],
                 'value'=>function($dataProvider){
-                    return Html::img('http://'.$dataProvider->oldbookimage,['alt' => '缩略图','width' => 80]);
+                    return Html::img($dataProvider->oldbookimage,['alt' => '缩略图','width' => 80]);
                 }
             ],
              'uid',

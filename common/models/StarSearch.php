@@ -19,7 +19,7 @@ class StarSearch extends Star
     {
         return [
             [['starid', 'starprice', 'uid', 'createtime', 'updatetime'], 'integer'],
-            [['startname', 'startcontent', 'startimage', 'starttime', 'status'], 'safe'],
+            [['starname', 'starcontent', 'starimage', 'startime', 'status'], 'safe'],
         ];
     }
 
@@ -67,10 +67,10 @@ class StarSearch extends Star
             'updatetime' => $this->updatetime,
         ]);
 
-        $query->andFilterWhere(['like', 'startname', $this->startname])
-            ->andFilterWhere(['like', 'startcontent', $this->startcontent])
-            ->andFilterWhere(['like', 'startimage', $this->startimage])
-            ->andFilterWhere(['like', 'starttime', $this->starttime])
+        $query->andFilterWhere(['like', 'starname', $this->starname])
+            ->andFilterWhere(['like', 'starcontent', $this->starcontent])
+            ->andFilterWhere(['like', 'starimage', $this->starimage])
+            ->andFilterWhere(['like', 'startime', $this->startime])
             ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;

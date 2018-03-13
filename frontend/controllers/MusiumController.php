@@ -10,9 +10,9 @@ namespace frontend\controllers;
 use yii\web\Controller;
 use common\models\XUser;
 use yii\web\NotFoundHttpException;
-use common\models\musium;
-use common\models\musiumcomment;
-use common\models\musiumcommentres;
+use common\models\Musium;
+use common\models\Musiumcomment;
+use common\models\Musiumcommentres;
 use common\services\DelmusiumService;
 
 class MusiumController extends Controller

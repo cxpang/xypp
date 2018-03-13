@@ -17,13 +17,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'starid') ?>
 
-    <?= $form->field($model, 'startname') ?>
+    <?= $form->field($model, 'starname') ?>
 
-    <?= $form->field($model, 'startcontent') ?>
+    <?= $form->field($model, 'starcontent') ?>
 
-    <?= $form->field($model, 'startimage') ?>
+    <?= $form->field($model, 'starimage') ?>
 
-    <?= $form->field($model, 'starttime') ?>
+    <?= $form->field($model, 'startime') ?>
 
     <?php // echo $form->field($model, 'starprice') ?>
 

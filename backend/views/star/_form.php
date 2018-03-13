@@ -12,13 +12,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'startname')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'starname')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'startcontent')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'starcontent')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'startimage')->fileInput()?>
+    <?= $form->field($model, 'starimage')->fileInput()?>
 
-    <?= $form->field($model, 'starttime')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'startime')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'starprice')->textInput() ?>
 

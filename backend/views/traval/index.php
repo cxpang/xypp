@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'travalimage',
                 'format' => ['raw',],
                 'value'=>function($dataProvider){
-                    return Html::img('http://'.$dataProvider->travalimage,['alt' => '缩略图','width' => 80]);
+                    return Html::img($dataProvider->travalimage,['alt' => '缩略图','width' => 80]);
                 }
             ],
             'uid',

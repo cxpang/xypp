@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'examimage',
                 'format' => ['raw',],
                 'value'=>function($dataProvider){
-                    return Html::img('http://'.$dataProvider->examimage,['alt' => '缩略图','width' => 80]);
+                    return Html::img($dataProvider->examimage,['alt' => '缩略图','width' => 80]);
                 }
             ],
             'uid',

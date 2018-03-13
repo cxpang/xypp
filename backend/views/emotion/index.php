@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'emotionimage',
                 'format' => ['raw',],
                 'value'=>function($dataProvider){
-                    return Html::img('http://'.$dataProvider->emotionimage,['alt' => '缩略图','width' => 80]);
+                    return Html::img($dataProvider->emotionimage,['alt' => '缩略图','width' => 80]);
                 }
             ],
             'uid',

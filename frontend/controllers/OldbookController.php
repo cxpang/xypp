@@ -4,9 +4,9 @@ namespace frontend\controllers;
 use yii\web\Controller;
 use common\models\XUser;
 use yii\web\NotFoundHttpException;
-use common\models\oldbook;
-use common\models\oldbookcomment;
-use common\models\oldbookcommentres;
+use common\models\Oldbook;
+use common\models\Oldbookcomment;
+use common\models\Oldbookcommentres;
 use common\services\Deloldbookservice;
 
 class OldbookController extends Controller

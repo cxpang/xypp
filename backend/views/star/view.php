@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Star */
 
-$this->title = $model->startname;
+$this->title = $model->starname;
 $this->params['breadcrumbs'][] = ['label' => '追星空间', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -29,14 +29,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'starid',
-            'startname',
-            'startcontent',
-            'startimage',
+            'starname',
+            'starcontent',
+            'starimage',
             [
-                'attribute'=>'startimage',
+                'attribute'=>'starimage',
                 'format' => ['raw',],
                 'value'=>function($dataProvider){
-                    return Html::img('http://'.$dataProvider->startimage,['alt' => '缩略图','width' => 80]);
+                    return Html::img($dataProvider->starimage,['alt' => '缩略图','width' => 80]);
                 }
             ],
             'starprice',

@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'competimage',
                 'format' => ['raw',],
                 'value'=>function($dataProvider){
-                    return Html::img('http://'.$dataProvider->competimage,['alt' => '缩略图','width' => 80]);
+                    return Html::img($dataProvider->competimage,['alt' => '缩略图','width' => 80]);
                 }
             ],
              'uid',
