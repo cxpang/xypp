@@ -19,7 +19,7 @@ $this->title = '聊天中心';
             <div class="chat01">
                 <div class="chat01_title">
                     <ul class="talkTo">
-                        <li><a href="javascript:;"><?=isset($tousers[0]['username'])?$tousers[0]['username']:'' ?></a></li></ul>
+                        <li><a href="javascript:;"><?=isset($tousers[0]['username'])?$tousers[0]['username']:$touserall[0]['username'] ?></a></li></ul>
                     <a class="close_btn" href="javascript:;"></a>
                 </div>
                 <div class="chat01_content">
@@ -78,7 +78,7 @@ $this->title = '聊天中心';
                             <label class="offline">
                             </label>
                             <a href="javascript:;">
-                                <img src="<?=isset($tousers[0]['upicture'])?$tousers[0]['upicture']:'' ?>"></a><a href="javascript:;" class="chat03_name"><?=isset($tousers[0]['username'])?$tousers[0]['username']:'' ?></a>
+                                <img src="<?=isset($tousers[0]['upicture'])?$tousers[0]['upicture']:$touserall[0]['upicture'] ?>"></a><a href="javascript:;" class="chat03_name"><?=isset($tousers[0]['username'])?$tousers[0]['username']:$touserall[0]['username'] ?></a>
                         </li>
                     </ul>
                 </div>
@@ -113,8 +113,8 @@ $this->title = '聊天中心';
             }
             else if(/^msg:/.test(getMsg)) { //代表是普通消息
                 console.log(getMsg);
-                var i="<div class='message clearfix'><div class='user-logo'><img style='width:50px;height:50px;' src='" +"<?=$tousers[0]['upicture']?>"+ "'/>" + "</div>"
-                i+="<div class='wrap-text'>"+"<h5 class='clearfix'>"+"<?=$tousers[0]['username']?>"+"</h5><div>"+getMsg.replace('msg:','')+"</div>";
+                var i="<div class='message clearfix'><div class='user-logo'><img style='width:50px;height:50px;' src='" +"<?=isset($tousers[0]['upicture'])?$tousers[0]['upicture']:$touserall[0]['upicture']?>"+ "'/>" + "</div>"
+                i+="<div class='wrap-text'>"+"<h5 class='clearfix'>"+"<?=isset($tousers[0]['username'])?$tousers[0]['username']:$touserall[0]['username']?>"+"</h5><div>"+getMsg.replace('msg:','')+"</div>";
                 i+="</div>";
                 $("#txtcontent").append(i);
             }
@@ -147,7 +147,7 @@ $this->title = '聊天中心';
 
     function findkey(obj) {
         $.each(obj, function(key, val) {
-            if(val=="<?=$tousers[0]['id']?>"){
+            if(val=="<?=isset($tousers[0]['id'])?$tousers[0]['id']:$touserall[0]['fromid'] ?>"){
                 touser= key;
             }
         });

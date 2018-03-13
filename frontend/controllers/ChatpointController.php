@@ -35,9 +35,9 @@ class ChatpointController extends Controller
         }
         else{
             $this->layout = 'xypk';
-            $params['fromchatid'] = \Yii::$app->user->identity->getId();
-            $touserall=Chatpoint::find()->from('chatpoint as  a')->leftJoin('x_user as b','a.toid=b.id')->select('a.toid,b.username,b.upicture')
-                ->asArray()->all();
+            $currentid = \Yii::$app->user->identity->getId();
+            $touserall=Chatpoint::find()->from('chatpoint as  a')->leftJoin('x_user as b','a.fromid=b.id')->select('a.fromid,b.username,b.upicture')
+                ->where(['a.toid'=>$currentid])->asArray()->all();
             return $this->render('index',[
                 'touserall'=>$touserall,
             ]);
