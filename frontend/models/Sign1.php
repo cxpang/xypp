@@ -4,6 +4,7 @@ namespace frontend\models;
 use yii\base\Model;
 use common\models\XUser;
 
+
 /**
  * Signup form
  */
@@ -64,6 +65,8 @@ class Sign1 extends Model
         $user->time =time();
         $user->setPassword($this->password);
         $user->generateAuthKey();
+
+
 
         return $user->save() ? $user : null;
     }

@@ -56,11 +56,10 @@ $this->title = '合租空间';
         <div class="col-md-12" style="border: 1px solid #e4e6eb;margin-top: 20px">
             <?php $form = ActiveForm::begin(['method' => "post",'action'=>Url::to(['room/index']),'options' => ['style' => 'margin-top: 10px;margin-bottom:10px;'] ]); ?>
             <div class="col-md-3">
-            关键词:<input type="text"  name="roomname" value="<?=Yii::$app->request->get('roomname')?>" placeholder="合租关键词">
+            <input type="text" class="form-control"   name="roomname" value="<?=Yii::$app->request->get('roomname')?>" placeholder="合租关键词">
             </div>
             <div class="col-md-2">
-                帖子状态:
-                <select name="status">
+                <select name="status" class="form-control" >
                     <option>全部</option>
                     <option>求租中</option>
                     <option>已结帖</option>
@@ -78,31 +77,19 @@ $this->title = '合租空间';
             <?php
                 foreach ($rooms as $row){
             ?>
+                    <a href="<?=Url::to(['room/detail','roomid'=>$row['roomid']])?>">
                     <div class="columnroom">
-                        <h1 style="margin-left: 60px"><a style="text-decoration: none" href="<?=Url::to(['room/detail','roomid'=>$row['roomid']])?>" ><?php echo $row['roomname'] ?></a>
-                            <span class="span"><?php echo $row['roomstatus']?></span>
-                            <button type="button" class="btn btn-default btn-lg" style="margin-right: 100px;float: right">
-                                <span class="glyphicon glyphicon-user"></span><?php echo  $row['username'];  ?>
-
-                            </button>
-                        </h1>
-                        <h2 style="margin-left: 20px;margin-top: 20px;color: red">价格:<?php echo $row['roomprice'] ?>元
-                            <br />
-                            <button type="button" class="btn btn-default btn-lg" style="margin-right: 100px;float: right;    margin-top: 150px;">
-                                <span class="glyphicon glyphicon-time"></span> <?php echo date("Y-m-d h:m",$row['createtime']) ?>
-                            </button>
-                        </h2>
-                        <div class="imagesdiv">
-                            <?=Html::img($row['roomimage'],['alt' => '缩略图','width' => 200,'height'=>200])?>
+                        <div class="col-md-4" style="margin-top: 15px;" >
+                            <?=Html::img($row['roomimage'],['alt' => '缩略图','width' => 300,'height'=>300,'class'=>'imagediv'])?>
                         </div>
-
+                        <div class="col-md-8" style="margin-top: 25px;">
+                            <div><h1><span class="glyphicon glyphicon-queen"></span>：<?=$row['roomname']?></h1></div>
+                            <div><h2><span class="glyphicon glyphicon-hand-right"></span>：<?=$row['roomstatus']?></h2></div>
+                            <div><h2 style="color: red"><span class="glyphicon glyphicon-gbp"></span>：<?=$row['roomprice']?>￥</h2></div>
+                            <div><h2><span class="glyphicon glyphicon-map-marker"></span>：<?=$row['roomaddress']?></h2></div>
+                        </div>
                     </div>
-<!--                    <div class="col-md-7" style="margin-top: 50px;">-->
-<!--                        <h1><a  href="--><?//=Url::to(['room/detail'])?><!--">--><?php // echo $row['roomname'] ?><!--</a></h1>-->
-<!--                        <div class="col-md-6">-->
-<!--                            --><?php // echo $row['roomaddress'] ?>
-<!--                        </div>-->
-<!--                    </div>-->
+                    </a>
 
 
             <?php }  ?>
@@ -147,6 +134,7 @@ $this->title = '合租空间';
         background-color: #ffffff;
         height: 320px;
         border-bottom: 1px solid #e4e6eb ;
+        cursor: pointer;
     }
     .imagesdiv{
         text-align: center;
@@ -154,6 +142,9 @@ $this->title = '合租空间';
     .span{
         margin-left: 50px;
         color: #00CC66;
+    }
+    .imagediv{
+        border-radius: 10%;
     }
 </style>
 <script>

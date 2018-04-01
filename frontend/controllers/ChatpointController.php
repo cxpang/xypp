@@ -21,7 +21,7 @@ class ChatpointController extends Controller
             $touser = XUser::find()->where(['id' => $gets['tochatid']])->select('id,username,upicture')->asArray()->all();
             $touser[0]['fromuserid'] = $params['fromchatid'];
             $params['tochatid'] = $gets['tochatid'];
-            if (empty($this->findexist($params['fromchatid'], $gets['tochatid']))) {
+            if (!$this->findexist($params['fromchatid'], $gets['tochatid'])) {
                 $chats = new Chatpoint();
                 $chats->fromid = $params['fromchatid'];
                 $chats->toid = $touser[0]['id'];
@@ -37,7 +37,7 @@ class ChatpointController extends Controller
             $this->layout = 'xypk';
             $currentid = \Yii::$app->user->identity->getId();
             $touserall=Chatpoint::find()->from('chatpoint as  a')->leftJoin('x_user as b','a.fromid=b.id')->select('a.fromid,b.username,b.upicture')
-                ->where(['a.toid'=>$currentid])->asArray()->all();
+                ->where(['a.toid'=>$currentid])->orderBy('updated_at desc')->asArray()->all();
             return $this->render('index',[
                 'touserall'=>$touserall,
             ]);
@@ -45,6 +45,8 @@ class ChatpointController extends Controller
     }
     protected function findexist($fromid,$toid){
         if (($model = Chatpoint::find()->where(['fromid'=>$fromid,'toid'=>$toid])->one()) !== null) {
+            $model->updated_at=time();
+            $model->save();
             return $model;
         } else {
             return null;

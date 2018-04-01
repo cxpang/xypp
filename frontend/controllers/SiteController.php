@@ -14,6 +14,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\Sign1;
 use frontend\models\ContactForm;
 use frontend\models\NewResetPasswrodForm;
+use common\models\Chatpoint;
 
 /**
  * Site controller
@@ -165,6 +166,12 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
+                    $chat=new Chatpoint();
+                    $chat->fromid=16;
+                    $chat->toid=Yii::$app->user->identity->getId();
+                    $chat->created_at=time();
+                    $chat->updated_at=time();
+                    $chat->save();
                     return $this->goHome();
                 }
             }

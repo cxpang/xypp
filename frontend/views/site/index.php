@@ -13,7 +13,7 @@ use yii\helpers\Url;
         <div class="col-md-4"> <a href=""><img class="image img-thumbnail" src="images/zhuimeng.jpg" /></a></div>
         <div class="col-md-4"><a href="<?=Url::to(['oldbook/index']) ?>"><img class="image img-thumbnail" src="images/jiushu.jpg" /></a></div>
         <div class="col-md-4"> <a href="<?=Url::to(['exam/index']) ?>"> <img class="image img-thumbnail" src="images/kaoshi.jpg" /></a></div>
-        <div class="col-md-4"> <a href="<?=Url::to(['oldbook/index']) ?>"> <img class="image img-thumbnail" src="images/tushuguan.jpg" /></a></div>
+        <div class="col-md-4"> <a href="<?=Url::to(['musium/index']) ?>"> <img class="image img-thumbnail" src="images/tushuguan.jpg" /></a></div>
     </div>
 </div>
 <style>

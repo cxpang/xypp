@@ -55,7 +55,7 @@ $this->title = '追星剧场详细信息';
                 <dd>
                     <strong><?=$oldbookdetail[0]['username'] ?></strong>
                     <?php if(yii::$app->user->identity->getId()!=$oldbookdetail[0]['uid']){ ?>
-                        <button type="button" class="btn btn-default btn-lg" style="margin-left: 150px">
+                        <button type="button" class="btn btn-default btn-lg" style="margin-left: 150px" onclick="returnchat();">
                             <span class="glyphicon glyphicon-envelope"></span>发送私信
                         </button>
                     <?php }?>
@@ -294,6 +294,9 @@ $this->title = '追星剧场详细信息';
                 }
             }
         })
+    }
+    function returnchat() {
+        window.open("<?=Url::to(['chatpoint/index','tochatid'=>$oldbookdetail[0]['uid']])?>");
     }
 </script>
 
